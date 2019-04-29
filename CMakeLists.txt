@@ -20,6 +20,7 @@ set( THREADS_PREFER_PTHREAD_FLAG ON )
 
 find_package( Threads REQUIRED )
 find_package( PkgConfig REQUIRED )
+find_package( ZLIB REQUIRED )
 pkg_check_modules( OGG REQUIRED ogg )
 pkg_check_modules( VORBIS REQUIRED vorbis )
 
