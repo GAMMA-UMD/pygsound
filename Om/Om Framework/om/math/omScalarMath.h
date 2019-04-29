@@ -371,8 +371,8 @@ OM_FORCE_INLINE bool isNAN( float number )
 {
 	/*UInt32 i = *(UInt32*)&number;
 	return (i & UInt32(0x7FC00000)) == UInt32(0x7FC00000);*/
-#if defined(OM_COMPILERs_GCC)
-	return isnan( number );
+#if defined(OM_COMPILER_GCC)
+	return std::isnan( number );
 #elif defined(OM_COMPILER_MSVC)
 	#if defined(OM_PLATFORM_64_BIT)
 		return _isnanf( number ) != 0;
@@ -394,7 +394,7 @@ OM_FORCE_INLINE bool isNAN( double number )
 	/*UInt64 i = *(UInt64*)&number;
 	return (i & UInt64(0x7FF8000000000000LL)) == UInt64(0x7FF8000000000000LL);*/
 #if defined(OM_COMPILER_GCC)
-	return isnan( number );
+	return std::isnan( number );
 #elif defined(OM_COMPILER_MSVC)
 	return _isnan( number ) != 0;
 #else
