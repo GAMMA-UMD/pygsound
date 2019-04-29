@@ -498,8 +498,8 @@ void* File:: map( AccessType accessType )
 		case READ:			protection = PROT_READ;					break;
 		case WRITE:			protection = PROT_WRITE;				break;
 		case READ_WRITE:	protection = PROT_READ | PROT_WRITE;	break;
-		default:
-			return false;
+//		default:
+//			return false;
 	}
 	
 	// Map the file.
@@ -520,8 +520,8 @@ void* File:: map( AccessType accessType )
 		case READ:			protection = FILE_MAP_READ;		break;
 		case WRITE:			protection = FILE_MAP_WRITE;	break;
 		case READ_WRITE:	protection = FILE_MAP_WRITE;	break;
-		default:
-			return false;
+//		default:
+//			return false;
 	}
 	
 	// Map the file.
@@ -553,8 +553,8 @@ void* File:: map( AccessType accessType, LargeIndex offset, Size length )
 		case READ:			protection = PROT_READ;					break;
 		case WRITE:			protection = PROT_WRITE;				break;
 		case READ_WRITE:	protection = PROT_READ | PROT_WRITE;	break;
-		default:
-			return false;
+//		default:
+//			return false;
 	}
 	
 	// Map the file region.
@@ -575,8 +575,8 @@ void* File:: map( AccessType accessType, LargeIndex offset, Size length )
 		case READ:			protection = FILE_MAP_READ;		break;
 		case WRITE:			protection = FILE_MAP_WRITE;	break;
 		case READ_WRITE:	protection = FILE_MAP_WRITE;	break;
-		default:
-			return false;
+//		default:
+//			return false;
 	}
 	
 	// Compute the low and high part of the 64-bit offset.

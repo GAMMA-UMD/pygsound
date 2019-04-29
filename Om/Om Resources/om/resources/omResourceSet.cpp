@@ -209,7 +209,7 @@ const ResourceID* ResourceSet:: getResourceID( const ResourceType& type, const v
 	if ( typeMap.find( type.getHashCode(), type, typeIndex ) )
 		return types[*typeIndex]->getResourceID( resource );
 	
-	return false;
+	return NULL;
 }
 
 
