@@ -13,8 +13,8 @@ def main():
     scene = ps.Scene()
     scene.setMesh(mesh)
 
-    src_coord = [1, 1, 1]
-    lis_coord = [0, 0, 0]
+    src_coord = [1, 1, 0.5]
+    lis_coord = [5, 3, 0.5]
 
     src = ps.Source(src_coord)
     src.radius = 0.01
@@ -24,8 +24,16 @@ def main():
 
     res = scene.computeMultichannelIR(src, lis, ctx)
 
-    w = WaveWriter('test.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate']))
+    w = WaveWriter('test1.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate']))
     w.write(np.array(res['samples']))
+
+    mesh2 = ps.createbox(10, 6, 2, 0.5, 0.5)
+    scene = ps.Scene()
+    scene.setMesh(mesh2)
+
+    res2 = scene.computeMultichannelIR(src, lis, ctx)
+    w2 = WaveWriter('test2.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate']))
+    w2.write(np.array(res2['samples']))
 
 
 if __name__ == '__main__':
