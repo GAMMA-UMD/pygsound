@@ -69,27 +69,22 @@ Scene::computeMultichannelIR( SoundSource &_source, Listener &_listener, Context
 //	gs::ImpulseResponse result;
 //	result.setIR(sourceIR, _listener.m_listener, _context.internalIRReq());
 	auto result = std::make_shared<gs::ImpulseResponse>();
-    std::cout << "setting IR" << std::endl;
 	result->setIR(sourceIR, _listener.m_listener, _context.internalIRReq());
-    std::cout << "IR all set" << std::endl;
 	auto rate = result->getSampleRate();
 
     auto numOfChannels = int(result->getChannelCount());
     assert(numOfChannels > 0);
 
     py::list samples;
-    std::cout << "extracting..." << std::endl;
     for (int ch = 0; ch < numOfChannels; ch++)
     {
         auto *sample_ch = result->getChannel(ch);
 		std::vector<float> samples_ch(sample_ch, sample_ch+result->getLengthInSamples());
         samples.append(samples_ch);
     }
-    std::cout << "extracted" << std::endl;
     py::dict ret;
     ret["rate"] = rate;
     ret["samples"] = samples;
-    std::cout << "finished" << std::endl;
     m_scene.clearSources();
     m_scene.clearListeners();
 
