@@ -173,17 +173,6 @@ void ImpulseResponse:: setIR( const SoundSourceIR& sourceIR, const SoundListener
 	bandIRs.allocate();
 	pan.allocate();
 
-	if (pan.isAllocated())
-	{
-		printf("num of channels: %d\n", numChannels);
-		printf("pan size: %d\n", pan.getSizeInBytes());
-		printf("irlength: %d, samplecnt: %d\n", sampledIRLength, pan.getSampleCount());
-	}
-	else
-	{
-		printf("pan buffer not allocated!\n");
-	}
-	
 	// Make sure the crossover has the correct frequency bands.
 	crossover.setBands( request.frequencies, sampleRate );
 	
@@ -203,9 +192,7 @@ void ImpulseResponse:: setIR( const SoundSourceIR& sourceIR, const SoundListener
 	// Interleave the IRs for each band.
 	
 	// Pan the IR directions based on the channel layout.
-	printf("panning??\n");
 	panDirections( sampledIR, channelLayout, listener.getOrientation(), pan );
-	printf("panned!\n");
 
 	// Interleave the sampled IR bands for each channel.
 	for ( Index c = 0; c < numChannels; c++ )
@@ -438,8 +425,7 @@ void ImpulseResponse:: panDirections( const SampledIR& ir, const ChannelLayout& 
 	const Size numChannels = channelLayout.getChannelCount();
 	const Index irStart = ir.getStartTimeInSamples();
 	const Size irLength = ir.getLengthInSamples();
-    printf("are we doing ambisonic?\n");
-    printf("samplecnt: %d, irlength: %d\n", pan.getSampleCount(), irLength);
+
 	if (channelLayout.getType() == ChannelLayout::AMBISONIC_B)
 	{
 		// Ambisonic IR
@@ -449,7 +435,6 @@ void ImpulseResponse:: panDirections( const SampledIR& ir, const ChannelLayout& 
 		for ( Index i = irStart; i < irLength; i++, directions++ )
 		{
 			Real directionMagnitude2 = (*directions).getMagnitudeSquared();
-			printf("magnitude of index %d: %f\n", i, directionMagnitude2);
 			if ( directionMagnitude2 > math::epsilon<Real>() )
 			{
 				// Compute the normalized panning direction for this sample.
@@ -459,12 +444,10 @@ void ImpulseResponse:: panDirections( const SampledIR& ir, const ChannelLayout& 
 				Float azimuth, elevation;
 				azimuth = math::atan2( -d.z, d.x );
 				elevation = math::asin( d.y );
-				printf("dir=(%f, %f, %f) -> (%f, %f)", d.x, d.y, d.z, azimuth, elevation);
 				pan.getChannel(0)[i] = math::sqrt(2.0f) / 2;
 				pan.getChannel(1)[i] = math::abs(math::cos(azimuth) * math::cos(elevation));
 				pan.getChannel(2)[i] = math::abs(math::sin(azimuth) * math::cos(elevation));
 				pan.getChannel(3)[i] = math::abs(math::sin(elevation));
-				printf(" -> gains: (%f, %f, %f)\n", pan.getChannel(1)[i], pan.getChannel(2)[i], pan.getChannel(3)[i]);
 			}
 			else
 			{
