@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 #include <sstream>
+#include <fftw3.h>
 
 #include <om/omSound.h>
 #include <om/omMath.h>
@@ -13,10 +14,7 @@
 #include "Scene.hpp"
 #include "SoundSource.hpp"
 #include "Listener.hpp"
-#include "ARDUtils.hpp"
 #include "MicrophoneArrays.hpp"
-#include "Metrics.hpp"
-#include <fftw3.h>
 
 
 namespace py = pybind11;
@@ -83,14 +81,9 @@ PYBIND11_MODULE(pysound, ps)
 			.value( "surround_4", oms::ChannelLayout::SURROUND_4 )
 			.value( "surround_5_1", oms::ChannelLayout::SURROUND_5_1 )
 			.value( "surround_7_1", oms::ChannelLayout::SURROUND_7_1 )
-			.value( "ambisonic", oms::ChannelLayout::AMBISONIC_B)
 			.value( "custom", oms::ChannelLayout::CUSTOM )
 			.value( "undefined", oms::ChannelLayout::UNDEFINED )
             .export_values();
 
-    ps.def( "read_field_ir", &read_field_ir );
-    ps.def( "read_field_irs", &read_field_irs );
-    ps.def( "a_noise_level", &a_noise_level );
-    ps.def( "a_noise_bands", &a_noise_bands );
 
 }
