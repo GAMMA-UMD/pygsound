@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13.1)
 project( pysound )
 
-# Need this when building on RHEL
+# May need this when building on RHEL
 #add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
 
 find_package (Python3 COMPONENTS Interpreter Development REQUIRED)
@@ -29,9 +29,7 @@ set( SOURCEFILES src/Context.cpp
 		src/Scene.cpp
 		src/SoundSource.cpp
 		src/Listener.cpp
-		src/MicrophoneArrays.cpp
-		src/ARDUtils.cpp
-		src/Metrics.cpp)
+		src/MicrophoneArrays.cpp)
 
 add_executable( gsound-ir src/main.cpp )
 
