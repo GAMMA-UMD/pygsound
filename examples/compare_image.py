@@ -36,22 +36,31 @@ def main():
     max_cnt = min(len(rir_gs['samples']), len(rir_img[0])) * 2
 
     fig, axs = plt.subplots(4, 1, figsize=(10, 20))
-    axs[0].set_title('Image Method')
+    axs[0].set_title('Image Method (waveform)')
     axs[0].plot(rir_img[0], linewidth=0.5)
     axs[0].set_xlabel('Sample')
     axs[0].set_xlim(0, max_cnt)
     axs[0].set_ylim(-1, 1)
+    axs[0].set_ylabel('Amplitude')
 
-    axs[1].set_title('Geometric Sound Propagation')
+    axs[1].set_title('Geometric Sound Propagation (waveform)')
     axs[1].plot(rir_gs['samples'], linewidth=0.5)
     axs[1].set_xlabel('Sample')
     axs[1].set_xlim(0, max_cnt)
     axs[1].set_ylim(-1, 1)
+    axs[1].set_ylabel('Amplitude')
 
+    axs[2].set_title('Image Method (spectrogram)')
     axs[2].specgram(rir_img[0], mode='magnitude', NFFT=1024, Fs=16000, noverlap=512)
     axs[2].set_xlim(0, max_cnt / 16000)
+    axs[2].set_xlabel('Times (s)')
+    axs[2].set_ylabel('Frequency (Hz)')
+
+    axs[3].set_title('Geometric Sound Propagation (spectrogram)')
     axs[3].specgram(rir_gs['samples'], mode='magnitude', NFFT=1024, Fs=16000, noverlap=512)
     axs[3].set_xlim(0, max_cnt / 16000)
+    axs[3].set_xlabel('Times (s)')
+    axs[3].set_ylabel('Frequency (Hz)')
 
     fig.tight_layout()
     plt.savefig('img_comparison.png')

@@ -1,4 +1,3 @@
-import os
 import numpy as np
 import pysound as ps
 from wavefile import WaveWriter, Format
