@@ -41,7 +41,7 @@ def main():
          [0.0303, 0.0175, 0]])
 
     src_coord = [1, 1, 1]
-    lis_coord = [0, 0, 0]
+    lis_coord = [0.1, 0.1, 0.1]
 
     res = compute_array("cube.obj", src_coord, lis_coord, 0.5, 0.5, custom_array)
 
