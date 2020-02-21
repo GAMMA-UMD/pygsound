@@ -13,8 +13,9 @@ endif()
 set(BUILD_DIRECTORY ${CMAKE_BUILD_TYPE})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated")
 set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BUILD_DIRECTORY}/lib )
-set( CMAKE_CXX_FLAGS_DEBUG "-g -fPIC" )
-set( CMAKE_CXX_FLAGS_RELEASE "-O3 -Ofast -DNDEBUG -fPIC" )
+set( CMAKE_CXX_FLAGS_DEBUG "-g -O0 -fPIC" )
+#set( CMAKE_CXX_FLAGS_RELEASE "-O3 -Ofast -DNDEBUG -fPIC" )
+set( CMAKE_CXX_FLAGS_RELEASE "-O2 -march=native -DNDEBUG -fPIC" )
 
 set( THREADS_PREFER_PTHREAD_FLAG ON )
 
@@ -35,6 +36,8 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/GSound
 )
 
+enable_testing()
 add_subdirectory(Om)
 add_subdirectory(GSound)
 add_subdirectory(pysound)
+

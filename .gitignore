@@ -6,3 +6,5 @@ cmake-build-Debug/
 cmake-build-Release/
 .DS_Store
 *.wav
+*.png
+*.txt
