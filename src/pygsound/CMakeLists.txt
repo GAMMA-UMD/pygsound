@@ -32,17 +32,7 @@ set( SOURCEFILES src/Context.cpp
 		src/Listener.cpp
 		src/MicrophoneArrays.cpp)
 
-add_executable( test_ir_compute tests/test_ir_compute.cpp )
+pybind11_add_module(pygsound SHARED ${SOURCEFILES} src/module.cpp)
 
-set( CMAKE_SHARED_LIBRARY_PREFIX "" )
-add_library( pygsound SHARED ${SOURCEFILES}
-		src/module.cpp )
+target_link_libraries( pygsound PRIVATE gsound)
 
-target_link_libraries( pygsound gsound)
-target_link_libraries( test_ir_compute pygsound
-				${Python3_LIBRARIES}
-)
-
-set_target_properties( test_ir_compute PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BUILD_DIRECTORY}/bin)
-set_target_properties( pygsound PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${BUILD_DIRECTORY}/lib)
-add_test( NAME ir_compute COMMAND test_ir_compute)

@@ -14,8 +14,8 @@ set(BUILD_DIRECTORY ${CMAKE_BUILD_TYPE})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated")
 set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BUILD_DIRECTORY}/lib )
 set( CMAKE_CXX_FLAGS_DEBUG "-g -O0 -fPIC" )
-#set( CMAKE_CXX_FLAGS_RELEASE "-O3 -Ofast -DNDEBUG -fPIC" )
-set( CMAKE_CXX_FLAGS_RELEASE "-O2 -march=native -DNDEBUG -fPIC" )
+set( CMAKE_CXX_FLAGS_RELEASE "-O3 -Ofast -DNDEBUG -fPIC" )
+#set( CMAKE_CXX_FLAGS_RELEASE "-O2 -march=native -DNDEBUG -fPIC" )
 
 set( THREADS_PREFER_PTHREAD_FLAG ON )
 
@@ -28,16 +28,16 @@ pkg_check_modules( VORBIS REQUIRED vorbis )
 
 # Add include directories
 include_directories(
-	${CMAKE_SOURCE_DIR}/Om/Om\ Framework
-	${CMAKE_SOURCE_DIR}/Om/Om\ BVH
-	${CMAKE_SOURCE_DIR}/Om/Om\ Compression
-	${CMAKE_SOURCE_DIR}/Om/Om\ Resources
-	${CMAKE_SOURCE_DIR}/Om/Om\ Sound
-	${CMAKE_SOURCE_DIR}/GSound
+	${CMAKE_SOURCE_DIR}/src/Om/Om\ Framework
+	${CMAKE_SOURCE_DIR}/src/Om/Om\ BVH
+	${CMAKE_SOURCE_DIR}/src/Om/Om\ Compression
+	${CMAKE_SOURCE_DIR}/src/Om/Om\ Resources
+	${CMAKE_SOURCE_DIR}/src/Om/Om\ Sound
+	${CMAKE_SOURCE_DIR}/src/GSound
 )
 
 enable_testing()
-add_subdirectory(Om)
-add_subdirectory(GSound)
-add_subdirectory(pygsound)
+add_subdirectory(src/Om)
+add_subdirectory(src/GSound)
+add_subdirectory(src/pygsound)
 

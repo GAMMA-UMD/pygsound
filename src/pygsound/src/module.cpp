@@ -22,7 +22,7 @@ namespace oms = om::sound;
 namespace omm = om::math;
 
 
-PYBIND11_MODULE(pysound, ps)
+PYBIND11_MODULE(pygsound, ps)
 {
 	fftw_init_threads();
 	fftw_plan_with_nthreads( om::CPU::getCount() );

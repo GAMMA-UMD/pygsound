@@ -4,7 +4,10 @@ cmake-build-debug/
 cmake-build-release/
 cmake-build-Debug/
 cmake-build-Release/
+dist
+__pycache__
 .DS_Store
 *.wav
 *.png
 *.txt
+*.egg-info
