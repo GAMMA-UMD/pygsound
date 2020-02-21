@@ -239,10 +239,11 @@ class SampledIR
 				// Reallocate or zero the IR if necessary.
 				if ( newNumSamples > capacity )
 					reallocate( newNumSamples );
-				
-				if ( sampleIndex > numSamples )
+
+//                if ( sampleIndex > numSamples )  // originally, Carl didn't account for the equal case
+                if ( sampleIndex >= numSamples )
 					zero( numSamples, newNumSamples - numSamples );
-				
+
 				// Accumulate the IR in each band.
 				*(FrequencyBandResponse*)(intensity + sampleIndex*numFrequencyBands) += newIntensity;
 				
