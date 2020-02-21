@@ -39,5 +39,5 @@ include_directories(
 enable_testing()
 add_subdirectory(Om)
 add_subdirectory(GSound)
-add_subdirectory(pysound)
+add_subdirectory(pygsound)
 

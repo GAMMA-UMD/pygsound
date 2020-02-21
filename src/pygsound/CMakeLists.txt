@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13.1)
-project( pysound )
+project( pygsound )
 
 # May need this when building on RHEL
 #add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
@@ -35,14 +35,14 @@ set( SOURCEFILES src/Context.cpp
 add_executable( test_ir_compute tests/test_ir_compute.cpp )
 
 set( CMAKE_SHARED_LIBRARY_PREFIX "" )
-add_library( pysound SHARED ${SOURCEFILES}
+add_library( pygsound SHARED ${SOURCEFILES}
 		src/module.cpp )
 
-target_link_libraries( pysound gsound)
-target_link_libraries( test_ir_compute pysound
+target_link_libraries( pygsound gsound)
+target_link_libraries( test_ir_compute pygsound
 				${Python3_LIBRARIES}
 )
 
 set_target_properties( test_ir_compute PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BUILD_DIRECTORY}/bin)
-set_target_properties( pysound PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${BUILD_DIRECTORY}/lib)
+set_target_properties( pygsound PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${BUILD_DIRECTORY}/lib)
 add_test( NAME ir_compute COMMAND test_ir_compute)
