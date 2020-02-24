@@ -1,0 +1,10 @@
+language: python
+python:
+  - "3.5"
+
+# command to install dependencies
+install:
+  - python3 setup.py develop
+# command to run tests
+script:
+  - python3 setup.py test
