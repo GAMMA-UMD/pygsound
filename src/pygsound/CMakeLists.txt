@@ -1,4 +1,3 @@
-cmake_minimum_required(VERSION 3.13.1)
 project( pygsound )
 
 # May need this when building on RHEL
