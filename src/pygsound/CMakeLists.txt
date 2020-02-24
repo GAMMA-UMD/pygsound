@@ -7,9 +7,6 @@ find_package (Python3 COMPONENTS Interpreter Development REQUIRED)
 message( "Python dir: " ${Python3_INCLUDE_DIRS})
 message( "Python lib: " ${Python3_LIBRARY_DIRS})
 
-find_package(pybind11 CONFIG REQUIRED)
-message(STATUS "Found pybind11 v${pybind11_VERSION}: ${pybind11_INCLUDE_DIR}")
-
 # Add include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/deps/include
 		            ${CMAKE_CURRENT_SOURCE_DIR}/src
