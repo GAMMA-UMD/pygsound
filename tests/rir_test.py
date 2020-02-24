@@ -45,7 +45,7 @@ def compute_scene_ir_absorb(roomdim, tasks, r):
     ctx = ps.Context()
     ctx.diffuse_count = 20000
     ctx.specular_count = 2000
-    ctx.threads_count = multiprocessing.cpu_count()
+    ctx.threads_count = min(multiprocessing.cpu_count(), 8)
 
     scene = ps.Scene()
     scene.setMesh(mesh)
