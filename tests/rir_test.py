@@ -1,9 +1,6 @@
 import unittest
-import argparse
-import ast
 import pygsound as ps
-from time import time
-import os
+import multiprocessing
 import numpy as np
 from wavefile import WaveWriter, Format
 
@@ -48,7 +45,7 @@ def compute_scene_ir_absorb(roomdim, tasks, r):
     ctx = ps.Context()
     ctx.diffuse_count = 20000
     ctx.specular_count = 2000
-    ctx.threads_count = 8
+    ctx.threads_count = multiprocessing.cpu_count()
 
     scene = ps.Scene()
     scene.setMesh(mesh)
