@@ -37,6 +37,7 @@ include_directories(
 )
 
 enable_testing()
+add_subdirectory(lib/pybind11)
 add_subdirectory(src/Om)
 add_subdirectory(src/GSound)
 add_subdirectory(src/pygsound)
