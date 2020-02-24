@@ -3,6 +3,7 @@ project( pygsound )
 # May need this when building on RHEL
 #add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
 
+set(Python3_FIND_VIRTUALENV "FIRST")
 find_package (Python3 COMPONENTS Interpreter Development REQUIRED)
 message( "Python dir: " ${Python3_INCLUDE_DIRS})
 message( "Python lib: " ${Python3_LIBRARY_DIRS})
@@ -10,13 +11,10 @@ message( "Python lib: " ${Python3_LIBRARY_DIRS})
 # Add include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/deps/include
 		            ${CMAKE_CURRENT_SOURCE_DIR}/src
-                    ${Python3_INCLUDE_DIRS}
-                    ${pybind11_INCLUDE_DIR}
 )
 
 # Add link directoris
 link_directories( 
-                ${Python3_LIBRARY_DIRS}
 		    ${VORBIS_LIBRARY_DIRS}
 		    ${OGG_LIBRARY_DIRS}
 )
