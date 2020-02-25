@@ -41,6 +41,7 @@
 	#include <mach/mach_host.h>
 	#include <sys/param.h>
 	#include <sys/mount.h>
+	#include <unistd.h>
 #elif defined(OM_PLATFORM_ANDROID)
 	#include <sys/types.h>
     #include <sys/sysinfo.h>
@@ -228,9 +229,9 @@ LargeSize Memory:: getVMAvailable()
 
 Size Memory:: getVMPageSize()
 {
-#if defined(OM_PLATFORM_ANDROID)
+#if defined(OM_PLATFORM_ANDROID) || defined(OM_PLATFORM_APPLE)
 	return (Size)getpagesize();
-#elif defined(OM_PLATFORM_APPLE) || defined(OM_PLATFORM_LINUX)
+#elif defined(OM_PLATFORM_LINUX)
 	return (Size)sysconf(_SC_PAGE_SIZE);
 #elif defined(OM_PLATFORM_WINDOWS)
 	// Get information about the system.
