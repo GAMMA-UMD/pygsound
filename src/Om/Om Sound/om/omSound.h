@@ -38,10 +38,7 @@
 
 
 #include "sound/omSoundBase.h"
-#include "sound/omSoundDevices.h"
 #include "sound/omSoundFilters.h"
-#include "sound/omSoundIO.h"
-#include "sound/omSoundResources.h"
 
 
 //##########################################################################################
@@ -54,9 +51,6 @@ OM_SOUND_NAMESPACE_START
 
 using namespace om::sound::base;
 using namespace om::sound::filters;
-using namespace om::sound::devices;
-using namespace om::sound::io;
-using namespace om::sound::resources;
 
 
 
