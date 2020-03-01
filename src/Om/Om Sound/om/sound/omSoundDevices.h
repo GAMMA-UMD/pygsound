@@ -46,12 +46,4 @@
 #include "devices/omDefaultSoundDevice.h"
 
 
-// MIDI Device Classes
-#include "devices/omSoundMIDIDeviceID.h"
-#include "devices/omSoundMIDIDeviceManager.h"
-#include "devices/omSoundMIDIDeviceManagerDelegate.h"
-#include "devices/omSoundMIDIDevice.h"
-#include "devices/omSoundMIDIDeviceDelegate.h"
-
-
 #endif // INCLUDE_OM_SOUND_DEVICES_H

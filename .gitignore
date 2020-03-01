@@ -10,4 +10,5 @@ __pycache__
 *.wav
 *.png
 *.txt
+*.so
 *.egg-info

@@ -56,13 +56,6 @@ void ResourceModule:: getFormats( ResourceManager& manager )
 
 
 
-void ResourceModule:: getTypes( ResourceSetTranscoder& transcoder )
-{
-}
-
-
-
-
 //##########################################################################################
 //***************************  End Om Resources Namespace  *********************************
 OM_RESOURCES_NAMESPACE_END

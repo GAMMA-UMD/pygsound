@@ -38,7 +38,6 @@
 
 
 #include "omResourceManager.h"
-#include "omResourceSetTranscoder.h"
 
 
 //##########################################################################################
@@ -79,10 +78,6 @@ class ResourceModule
 			
 			/// Add transcoders to the specified resource manager for the resource formats this module supports.
 			virtual void getFormats( ResourceManager& manager );
-			
-			
-			/// Add transcoders to the specified resource set transcoder for the resource types this module supports.
-			virtual void getTypes( ResourceSetTranscoder& transcoder );
 			
 			
 			

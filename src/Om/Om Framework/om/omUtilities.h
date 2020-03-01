@@ -48,20 +48,13 @@
 
 // Array-based list classes
 #include "util/omArrayList.h"
-#include "util/omStaticArrayList.h"
 #include "util/omShortArrayList.h"
-
-// Linked list class
-#include "util/omLinkedList.h"
 
 // Hash map.
 #include "util/omHashMap.h"
 
 // Priority Queue.
 #include "util/omPriorityQueue.h"
-
-// Object Pool.
-#include "util/omObjectPool.h"
 
 
 #endif // INCLUDE_OM_UTILITIES_H

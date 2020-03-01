@@ -47,37 +47,10 @@
 #include "filters/omSoundFilterState.h"
 #include "filters/omSoundFilterPreset.h"
 #include "filters/omSoundFilter.h"
-#include "filters/omSoundFilterInputStream.h"
-
-
-// Routing and Mixing Filters
-#include "filters/omSoundMixer.h"
-#include "filters/omSoundSplitter.h"
-#include "filters/omSoundFilterSeries.h"
-#include "filters/omSoundFilterGraph.h"
-
-
-// Panning and Channel Mixing Filters
-#include "filters/omSoundPanner.h"
-#include "filters/omSoundMonoMixer.h"
-#include "filters/omSoundMonoSplitter.h"
 
 
 // Equalization Filters
-#include "filters/omSoundDCFilter.h"
 #include "filters/omSoundCutoffFilter.h"
-#include "filters/omSoundBandFilter.h"
-#include "filters/omSoundShelfFilter.h"
-#include "filters/omSoundParametricFilter.h"
-#include "filters/omSoundCrossover.h"
-#include "filters/omSoundParametricEqualizer.h"
-#include "filters/omSoundGraphicEqualizer.h"
-#include "filters/omSoundConvolutionFilter.h"
-
-
-// Delay Filters
-#include "filters/omSoundDelay.h"
-#include "filters/omSoundMultichannelDelay.h"
 
 
 // Reverb Filters
@@ -85,40 +58,17 @@
 
 
 // Sound Sources/Destinations
-#include "filters/omSoundToneGenerator.h"
-#include "filters/omSoundStreamPlayer.h"
-#include "filters/omSoundStreamRecorder.h"
-#include "filters/omSoundThreadedStreamRecorder.h"
 #include "filters/omSoundPlayer.h"
 
 
 // Dynamics Filters
-#include "filters/omSoundGainFilter.h"
 #include "filters/omSoundCompressor.h"
 #include "filters/omSoundLimiter.h"
-#include "filters/omSoundExpander.h"
 #include "filters/omSoundHDRFilter.h"
 
 
-// Distortion Filters
-#include "filters/omSoundDistortion.h"
-#include "filters/omSoundSaturator.h"
-#include "filters/omSoundBitcrusher.h"
-
-
-// Modulation Filters
-#include "filters/omSoundTremolo.h"
-#include "filters/omSoundVibrato.h"
-#include "filters/omSoundFlanger.h"
-
-
-// Sample Rate Conversion / Pitch Shift Filters
+// Sample Rate Conversion
 #include "filters/omSoundResampler.h"
-#include "filters/omSoundPitchShifter.h"
-
-
-// Analysis Filters
-#include "filters/omSoundIRUtility.h"
 
 
 #endif // INCLUDE_OM_SOUND_FILTERS_H

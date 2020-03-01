@@ -55,11 +55,6 @@
 #include "io/omSoundOggEncoder.h"
 #include "io/omSoundOggTranscoder.h"
 
-// .flac format encoder/decoder
-#include "io/omSoundFLACDecoder.h"
-#include "io/omSoundFLACEncoder.h"
-#include "io/omSoundFLACTranscoder.h"
-
 
 // Multi-format sound format converter.
 #include "io/omSoundConverter.h"

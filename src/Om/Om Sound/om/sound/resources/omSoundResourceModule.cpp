@@ -87,19 +87,6 @@ void SoundResourceModule:: getFormats( ResourceManager& manager )
 
 
 
-void SoundResourceModule:: getTypes( ResourceSetTranscoder& transcoder )
-{
-	transcoder.addType( &sound );
-	transcoder.addType( &soundBuffer );
-	transcoder.addType( &soundTrack );
-	transcoder.addType( &midi );
-	transcoder.addType( &plugin );
-	transcoder.addType( &directionalIR );
-}
-
-
-
-
 //##########################################################################################
 //*************************  End Om Sound Resources Namespace  *****************************
 OM_SOUND_RESOURCES_NAMESPACE_END

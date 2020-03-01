@@ -37,14 +37,6 @@
 #include "omSoundResourcesConfig.h"
 
 
-#include "omSoundResourceTranscoder.h"
-#include "omSoundBufferResourceTranscoder.h"
-#include "omSoundTrackResourceTranscoder.h"
-#include "omSoundMIDIResourceTranscoder.h"
-#include "omSoundPluginResourceTranscoder.h"
-#include "omSoundDirectionalIRResourceTranscoder.h"
-
-
 //##########################################################################################
 //*************************  Start Om Sound Resources Namespace  ***************************
 OM_SOUND_RESOURCES_NAMESPACE_START
@@ -88,51 +80,11 @@ class SoundResourceModule : public ResourceModule
 			virtual void getFormats( ResourceManager& manager );
 			
 			
-			/// Add transcoders to the specified resource set transcoder for the resource types this module supports.
-			virtual void getTypes( ResourceSetTranscoder& transcoder );
-			
-			
-		//********************************************************************************
-		//******	Plugin Manager Accessor Methods
-			
-			
-			/// Return a pointer to the plugin manager that is managing the plugin types for this module.
-			OM_INLINE PluginManager* getPluginManager() const
-			{
-				return plugin.getPluginManager();
-			}
-			
-			
-			/// Set a pointer to the plugin manager that is managing the plugin types for this module.
-			OM_INLINE void setPluginManager( PluginManager* newPluginManager )
-			{
-				plugin.setPluginManager( newPluginManager );
-			}
-			
-			
 	private:
 		
 		//********************************************************************************
 		//******	Private Data Members
 			
-			
-			/// A resource transcoder for the Sound resource type.
-			SoundResourceTranscoder sound;
-			
-			/// A resource transcoder for the SoundBuffer resource type.
-			SoundBufferResourceTranscoder soundBuffer;
-			
-			/// A resource transcoder for the SoundTrack resource type.
-			SoundTrackResourceTranscoder soundTrack;
-			
-			/// A resource transcoder for the MIDI resource type.
-			MIDIResourceTranscoder midi;
-			
-			/// A resource transcoder for the SoundPlugin resource type.
-			SoundPluginResourceTranscoder plugin;
-			
-			/// A resource transcoder for the DTF resource type.
-			DirectionalIRResourceTranscoder directionalIR;
 			
 			/// A resource transcoder for the HRTF format.
 			io::HRTFTranscoder hrtf;

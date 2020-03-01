@@ -69,28 +69,18 @@
 #include "base/omSoundFrequencyBands.h"
 #include "base/omSoundSIMDCrossover.h"
 
-// Convolution
-#include "base/omSoundConvolution.h"
-
 // MIDI Classes
 #include "base/omSoundMIDIMessage.h"
 #include "base/omSoundMIDIEvent.h"
 #include "base/omSoundMIDITime.h"
 #include "base/omSoundTimeSignature.h"
 #include "base/omSoundMIDIBuffer.h"
-#include "base/omSoundMIDI.h"
-#include "base/omSoundMIDIInputStream.h"
-#include "base/omSoundMIDIOutputStream.h"
 
 // Sound Frame
 #include "base/omSoundFrame.h"
 #include "base/omSoundResult.h"
 
 #include "base/omSoundLerpState.h"
-
-// Sound Track
-#include "base/omSoundRegion.h"
-#include "base/omSoundTrack.h"
 
 
 #endif // INCLUDE_OM_SOUND_BASE_H

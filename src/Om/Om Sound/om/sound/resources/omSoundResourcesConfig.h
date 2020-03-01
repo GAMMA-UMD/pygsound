@@ -39,7 +39,6 @@
 
 #include "../omSoundBase.h"
 #include "../omSoundIO.h"
-#include "../omSoundPlugins.h"
 
 
 //##########################################################################################
@@ -50,7 +49,6 @@ OM_SOUND_RESOURCES_NAMESPACE_START
 
 
 using namespace om::sound::base;
-using namespace om::sound::plugins;
 using namespace om::resources;
 
 

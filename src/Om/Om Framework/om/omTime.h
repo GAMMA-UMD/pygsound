@@ -37,10 +37,6 @@
 #include "time/omTimeConfig.h"
 
 #include "time/omTimer.h"
-#include "time/omDate.h"
-#include "time/omMonth.h"
-#include "time/omDay.h"
-#include "time/omTimeOfDay.h"
 
 
 #endif // INCLUDE_OM_TIME_MODULE_H

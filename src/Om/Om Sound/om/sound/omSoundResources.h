@@ -37,12 +37,6 @@
 #include "resources/omSoundResourcesConfig.h"
 
 
-#include "resources/omSoundResourceTranscoder.h"
-#include "resources/omSoundBufferResourceTranscoder.h"
-#include "resources/omSoundMIDIResourceTranscoder.h"
-#include "resources/omSoundPluginResourceTranscoder.h"
-
-
 #include "resources/omSoundResourceModule.h"
 
 

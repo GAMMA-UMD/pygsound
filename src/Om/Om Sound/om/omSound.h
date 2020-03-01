@@ -42,7 +42,6 @@
 #include "sound/omSoundFilters.h"
 #include "sound/omSoundIO.h"
 #include "sound/omSoundResources.h"
-#include "sound/omSoundPlugins.h"
 
 
 //##########################################################################################

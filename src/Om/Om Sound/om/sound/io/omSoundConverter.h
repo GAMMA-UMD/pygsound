@@ -41,7 +41,6 @@
 #include "omSoundAIFFTranscoder.h"
 #include "omSoundWaveTranscoder.h"
 #include "omSoundOggTranscoder.h"
-#include "omSoundFLACTranscoder.h"
 
 
 //##########################################################################################
@@ -201,10 +200,6 @@ class SoundConverter
 			
 			/// An sound transcoder object for the OGG format.
 			OggTranscoder ogg;
-			
-			
-			/// An sound transcoder object for the FLAC format.
-			FLACTranscoder flac;
 			
 			
 			

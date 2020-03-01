@@ -39,38 +39,19 @@
 
 #include "resources/omResourceFormat.h"
 #include "resources/omResourceType.h"
-#include "resources/omResourceCategory.h"
-#include "resources/omResourceSubType.h"
-#include "resources/omResourceTypeID.h"
 
 #include "resources/omResourceID.h"
 #include "resources/omOpaqueResource.h"
 #include "resources/omResource.h"
 
-#include "resources/omResourceGroup.h"
-#include "resources/omResourceTag.h"
 #include "resources/omResourceSet.h"
-#include "resources/omResourcePrototype.h"
-#include "resources/omResourcePrototypeFlags.h"
 
 #include "resources/omResourceMode.h"
 #include "resources/omResourceTranscoder.h"
 #include "resources/omResourceTypeTranscoder.h"
 #include "resources/omResourceManager.h"
 
-#include "resources/omResourceEncoder.h"
-#include "resources/omResourceDecoder.h"
-#include "resources/omResourceSetTranscoder.h"
-#include "resources/omResourceSetTypeTranscoder.h"
-#include "resources/omResourceSetTranscoderTemplate.h"
-#include "resources/omResourceReference.h"
-#include "resources/omResourceReferencePatcher.h"
 #include "resources/omResourceModule.h"
-
-#include "resources/omResourceGroupTranscoder.h"
-#include "resources/omResourceTagTranscoder.h"
-#include "resources/omResourcePrototypeTranscoder.h"
-#include "resources/omResourcesResourceModule.h"
 
 
 #endif // INCLUDE_OM_RESOURCES_H

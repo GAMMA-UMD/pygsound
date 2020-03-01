@@ -62,7 +62,6 @@ SoundConverter:: SoundConverter()
 	transcoders.add( SoundFormat::AIFF, SoundFormat::AIFF, &aiff );
 	transcoders.add( SoundFormat::WAVE, SoundFormat::WAVE, &wave );
 	transcoders.add( SoundFormat::OGG, SoundFormat::OGG, &ogg );
-	transcoders.add( SoundFormat::FLAC, SoundFormat::FLAC, &flac );
 }
 
 

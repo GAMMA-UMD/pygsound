@@ -68,10 +68,8 @@ using om::sound::base::MIDIMessage;
 using om::sound::base::MIDIEvent;
 using om::sound::base::MIDIBuffer;
 using om::sound::base::MIDITime;
-using om::sound::base::Convolution;
 using om::sound::base::SoundFrame;
 using om::sound::base::SoundResult;
-using om::sound::base::SoundRegion;
 
 
 

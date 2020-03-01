@@ -9,7 +9,6 @@ add_library( gsound STATIC ${SOURCEFILES})
 set( EXTERNAL_LIBS
 		om-sound
 		om-resources
-		om-compression
 		om-bvh
 		om-framework
 		fftw3_threads
