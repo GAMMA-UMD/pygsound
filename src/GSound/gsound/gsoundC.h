@@ -1629,7 +1629,7 @@ void GSOUND_EXPORT gsDeleteSound( gsSoundID soundID );
   * played from there.
   * 
   * The following file formats are supported:
-  * WAVE, AIFF, OGG
+  * WAVE, AIFF
   */
 gsBool GSOUND_EXPORT gsSoundSetFile( gsSoundID soundID, const char* filePath, gsBool streaming );
 

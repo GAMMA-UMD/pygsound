@@ -26,7 +26,10 @@ set( SOURCEFILES src/Context.cpp
 		src/Listener.cpp
 		src/MicrophoneArrays.cpp)
 
-pybind11_add_module(pygsound SHARED ${SOURCEFILES} src/module.cpp)
+#pybind11_add_module(pygsound SHARED ${SOURCEFILES} src/module.cpp)
 
-target_link_libraries( pygsound PRIVATE gsound)
+#target_link_libraries( pygsound PRIVATE gsound)
+
+add_executable(test_ir_compute tests/test_ir_compute.cpp ${SOURCEFILES} src/module.cpp)
+target_link_libraries(test_ir_compute PRIVATE gsound pybind11::embed)
 

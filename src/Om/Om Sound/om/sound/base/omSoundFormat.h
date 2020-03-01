@@ -66,10 +66,7 @@ class SoundFormat
 				WAVE,
 				
 				/// The Audio Interchange File Format (AIFF) sound format.
-				AIFF,
-				
-				/// The compressed OGG sound format.
-				OGG,
+				AIFF,				
 				
 				/// The compressed MPEG-3 sound format.
 				MP3,
@@ -165,10 +162,7 @@ class SoundFormat
 			static const om::resources::ResourceFormat WAVE_FORMAT;
 			
 			/// The resource format for AIFF sound files.
-			static const om::resources::ResourceFormat AIFF_FORMAT;
-			
-			/// The resource format for OGG sound files.
-			static const om::resources::ResourceFormat OGG_FORMAT;
+			static const om::resources::ResourceFormat AIFF_FORMAT;			
 			
 			/// The resource format for MP3 sound files.
 			static const om::resources::ResourceFormat MP3_FORMAT;
