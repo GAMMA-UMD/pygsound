@@ -1,5 +1,4 @@
 os: osx
-language: python
 addons:
     homebrew:
       # update: true
