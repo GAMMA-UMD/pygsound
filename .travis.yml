@@ -1,4 +1,13 @@
-os: osx
+language: generic
+jobs:
+  include:
+    - os: osx
+      osx_image: xcode9.4
+    - os: osx
+      osx_image: xcode10.3
+    - os: osx
+      osx_image: xcode11.3
+      
 addons:
     homebrew:
       # update: true
