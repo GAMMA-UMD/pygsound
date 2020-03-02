@@ -1,10 +1,12 @@
 os: osx
 language: python
-- python: 3.5
-  dist: trusty
-before_install:
-  - brew install fftw
-  - brew install cmake
+addons:
+    homebrew:
+      # update: true
+      packages: 
+      - python3
+      - fftw
+      - cmake
 # command to install dependencies
 install:
   - python3 setup.py develop
