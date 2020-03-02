@@ -427,7 +427,6 @@ using om::math::Transform3f;
 using om::Allocator;
 using om::AlignedAllocator;
 using om::ArrayList;
-using om::StaticArrayList;
 using om::ShortArrayList;
 using om::Array;
 using om::HashMap;

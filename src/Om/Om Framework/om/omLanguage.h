@@ -41,13 +41,9 @@
 #include "lang/omFunctionCall.h"
 #include "lang/omUnique.h"
 #include "lang/omShared.h"
-#include "lang/omAny.h"
-#include "lang/omType.h"
 #include "lang/omOptional.h"
-#include "lang/omTuple.h"
 #include "lang/omHalfFloat.h"
 #include "lang/omUserData.h"
-#include "lang/omFlags.h"
 
 
 #endif // INCLUDE_OM_LANGUAGE_H

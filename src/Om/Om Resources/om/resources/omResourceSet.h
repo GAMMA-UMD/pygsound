@@ -40,7 +40,6 @@
 #include "omResourceType.h"
 #include "omResourceTypeSet.h"
 #include "omResourceTypeSetBase.h"
-#include "omResourceReference.h"
 
 
 //##########################################################################################

@@ -141,14 +141,6 @@ class FileSystemNode
 			virtual LargeSize getSize() const = 0;
 			
 			
-			/// Return the date when this file system node was created.
-			virtual time::Date getDateCreated() const;
-			
-			
-			/// Return the date when this file system node was last modified.
-			virtual time::Date getDateModified() const;
-			
-			
 		//********************************************************************************
 		//******	Node Modification Methods
 			

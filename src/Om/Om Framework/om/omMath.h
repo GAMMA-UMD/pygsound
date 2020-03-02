@@ -59,23 +59,18 @@
 
 #include "math/omQuaternion.h"
 
-#include "math/omTransform2D.h"
 #include "math/omTransform3D.h"
 
 
-#include "math/omRay2D.h"
 #include "math/omRay3D.h"
 
 
-#include "math/omPlane2D.h"
 #include "math/omPlane3D.h"
 
 
-#include "math/omSphere2D.h"
 #include "math/omSphere3D.h"
 
 
-#include "math/omFixed.h"
 #include "math/omComplex.h"
 
 
@@ -84,23 +79,14 @@
 
 #include "math/omMathPrimitives.h"
 
-#include "math/omUniformDistribution.h"
-#include "math/omNormalDistribution.h"
-#include "math/omExponentialDistribution.h"
-#include "math/omPoissonDistribution.h"
-
+#include "math/omRandom.h"
 
 #include "math/omScalarType.h"
-#include "math/omTensorType.h"
-#include "math/omTensor.h"
-#include "math/omTensorMath.h"
-
 
 #include "math/omFFTBase.h"
 #include "math/omFFTComplex.h"
 #include "math/omFFTReal.h"
 #include "math/omFFT.h"
-#include "math/omConvolution.h"
 #include "math/omResample.h"
 #include "math/omInterpolation.h"
 
@@ -182,23 +168,11 @@ typedef Quaternion4D<double>	Quaternion4d;
 
 
 
-// 2D Plane Type Definitions.
-typedef Plane2D<int> Plane2i;
-typedef Plane2D<float> Plane2f;
-typedef Plane2D<double> Plane2d;
-
 // 3D Plane Type Definitions.
 typedef Plane3D<int> Plane3i;
 typedef Plane3D<float> Plane3f;
 typedef Plane3D<double> Plane3d;
 
-
-
-
-// 2D Ray Type Definitions.
-typedef Ray2D<int>		Ray2i;
-typedef Ray2D<float>	Ray2f;
-typedef Ray2D<double>	Ray2d;
 
 // 3D Ray Type Definitions.
 typedef Ray3D<int>		Ray3i;
@@ -206,12 +180,6 @@ typedef Ray3D<float>	Ray3f;
 typedef Ray3D<double>	Ray3d;
 
 
-
-
-// 2D Sphere Type Definitions.
-typedef Sphere2D<int>		Sphere2i;
-typedef Sphere2D<float>		Sphere2f;
-typedef Sphere2D<double>	Sphere2d;
 
 // 3D Sphere Type Definitions.
 typedef Sphere3D<int>		Sphere3i;

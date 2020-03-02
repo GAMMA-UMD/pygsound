@@ -1,16 +1,9 @@
-#include <pybind11/pybind11.h>
 #include <gsound/gsound.h>
 #include <gsound/gsPropagationRequest.h>
-#include <gsound/gsSoundObject.h>
-#include <gsound/gsSoundMesh.h>
-#include <gsound/gsSoundMeshPreprocessor.h>
 
 #include <om/omResources.h>
-#include <om/omMath.h>
 #include <om/omSound.h>
 #include <om/omIO.h>
-#include <om/omData.h>
-
 
 #include "SoundMesh.hpp"
 #include "Context.hpp"
@@ -19,18 +12,10 @@
 #include "SoundSource.hpp"
 
 #include <memory>
-#include <string>
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <stdexcept>
-#include <sstream>
 #include <algorithm>
-#include <iterator>
-#include <cmath>
-#include <ctime>
-#include <fenv.h>
-
 
 namespace gs = gsound;
 namespace omr = om::resources;
@@ -100,7 +85,7 @@ std::vector<float> computeIR(const std::shared_ptr< SoundMesh > mesh, const omm:
 int main( int _argc, const char **_argv )
 {
     int seed = 0;
-    int N = 50;
+    int N = 2;
     float low = 0.5;
     float high = 0.99;
     std::vector<omm::Vector3f> roomsizes, lislocs, srclocs;

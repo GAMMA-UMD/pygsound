@@ -460,7 +460,7 @@ UTF8String SoundFilter:: getMIDIOutputName( Index outputIndex ) const
 
 UTF8String SoundFilter:: getName() const
 {
-	return UTF8String(Type::of(*this).toString());
+	return UTF8String();
 }
 
 

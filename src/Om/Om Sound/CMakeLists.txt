@@ -4,8 +4,6 @@ project(om-sound)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Om\ Framework
 	${CMAKE_CURRENT_SOURCE_DIR}/../Om\ Resources
 	${CMAKE_CURRENT_SOURCE_DIR}/../platform
-	${VORBIS_INCLUDE_DIRS}
-	${OGG_INCLUDE_DIRS}
 )
 
 
@@ -16,8 +14,6 @@ add_library( om-sound STATIC ${SOURCEFILES})
 
 
 set( EXTERNAL_LIBS
-		ogg
-		vorbis
 		om-resources
 		om-framework
 		Threads::Threads )

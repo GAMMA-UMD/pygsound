@@ -42,7 +42,6 @@ OM_SOUND_BASE_NAMESPACE_START
 
 const om::resources::ResourceFormat SoundFormat:: WAVE_FORMAT( "WAVE", "wav", "wave" );
 const om::resources::ResourceFormat SoundFormat:: AIFF_FORMAT( "AIFF", "aif", "aiff", "aifc" );
-const om::resources::ResourceFormat SoundFormat:: OGG_FORMAT( "OGG", "ogg", "oga" );
 const om::resources::ResourceFormat SoundFormat:: MP3_FORMAT( "MP3", "mp3" );
 const om::resources::ResourceFormat SoundFormat:: M4A_FORMAT( "M4A", "m4a" );
 const om::resources::ResourceFormat SoundFormat:: FLAC_FORMAT( "FLAC", "flac" );
@@ -67,8 +66,6 @@ SoundFormat:: SoundFormat( const om::resources::ResourceFormat& newFormat )
 		format = WAVE;
 	else if ( newFormat == AIFF_FORMAT )
 		format = AIFF;
-	else if ( newFormat == OGG_FORMAT )
-		format = OGG;
 	else if ( newFormat == MP3_FORMAT )
 		format = MP3;
 	else if ( newFormat == M4A_FORMAT )
@@ -97,7 +94,6 @@ Bool SoundFormat:: isLossy() const
 {
 	switch ( format )
 	{
-		case OGG:
 		case MP3:
 		case M4A:
 			return true;
@@ -132,9 +128,6 @@ UTF8String SoundFormat:: getExtension() const
 		case AIFF:
 			extension = "aif";
 			break;
-		case OGG:
-			extension = "ogg";
-			break;
 		case MP3:
 			extension = "mp3";
 			break;
@@ -166,8 +159,6 @@ SoundFormat SoundFormat:: getFormatForExtension( const UTF8String& extension )
 		return WAVE;
 	else if ( e == "aif" || e == "aiff" )
 		return AIFF;
-	else if ( e == "ogg" )
-		return OGG;
 	else if ( e == "mp3" )
 		return MP3;
 	else if ( e == "m4a" )
@@ -205,9 +196,6 @@ String SoundFormat:: toString() const
 			break;
 		case AIFF:
 			typeString = "AIFF";
-			break;
-		case OGG:
-			typeString = "OGG";
 			break;
 		case MP3:
 			typeString = "MP3";

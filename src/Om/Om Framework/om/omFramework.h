@@ -65,11 +65,8 @@ using om::util::ShortArray;
 using om::util::PODArray;
 using om::util::ArrayList;
 using om::util::ShortArrayList;
-using om::util::StaticArrayList;
-using om::util::LinkedList;
 using om::util::HashMap;
 using om::util::PriorityQueue;
-using om::util::ObjectPool;
 
 
 //********************************************************************************
@@ -81,10 +78,7 @@ using om::lang::bind;
 using om::lang::FunctionCall;
 using om::lang::bindCall;
 using om::lang::Shared;
-using om::lang::Any;
-using om::lang::Type;
 using om::lang::Optional;
-using om::lang::Tuple;
 using om::lang::HalfFloat;
 using om::lang::Float16;
 using om::lang::UserData;
@@ -102,8 +96,6 @@ using om::math::ScalarType;
 //********************************************************************************
 // Data:
 
-
-using om::data::Buffer;
 
 
 using om::data::String;
@@ -165,7 +157,6 @@ using om::io::Console;
 
 using om::time::Time;
 using om::time::Timer;
-using om::time::Date;
 
 
 //********************************************************************************

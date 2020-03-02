@@ -181,57 +181,6 @@ class ObjectAllocator
 
 
 
-
-//##########################################################################################
-//##########################################################################################
-//############		
-//############		Device Info Class
-//############		
-//##########################################################################################
-//##########################################################################################
-
-
-
-
-/// A class that stores info about a sound output device and its connection to a sound propagation system
-class DeviceInfo
-{
-	public:
-		
-		DeviceInfo()
-		{
-		}
-		
-		Size output( om::sound::SoundDevice& device, SoundBuffer& outputBuffer, Size numOutputSamples, const Time& time )
-		{
-			if ( system.isSet() )
-			{
-				Size numRenderedSamples = system->renderListener( listener, tempBuffer, numOutputSamples );
-				
-				if ( numRenderedSamples < numOutputSamples )
-					outputBuffer.zero( numRenderedSamples, numOutputSamples );
-				
-				limiter.process( tempBuffer, outputBuffer, numOutputSamples );
-			}
-			else
-				outputBuffer.zero( 0, numOutputSamples );
-			
-			return numOutputSamples;
-		}
-		
-		om::sound::DefaultSoundDevice device;
-		om::sound::HDRFilter limiter;
-		Shared<SoundPropagationSystem> system;
-		Shared<SoundListener> listener;
-		
-		/// A temporary sound buffer used to hold the output of the renderer before being sent to the device.
-		SoundBuffer tempBuffer;
-		
-};
-
-
-
-
 //##########################################################################################
 //##########################################################################################
 //############		
@@ -437,7 +386,6 @@ class SoundLibrary
 		/// Create a new default sound library with no objects allocated.
 		GSOUND_INLINE SoundLibrary()
 		{
-			soundResourceModule.getFormats( resourceManager );
 		}
 		
 		
@@ -451,7 +399,6 @@ class SoundLibrary
 		/// Reset the library, releasing all allocated objects.
 		GSOUND_INLINE void reset()
 		{
-			devices.clear();
 			systems.clear();
 			requests.clear();
 			renderRequests.clear();
@@ -471,7 +418,6 @@ class SoundLibrary
 		ObjectAllocator<PropagationRequest> requests;
 		ObjectAllocator<RenderRequest> renderRequests;
 		ObjectAllocator<MeshRequest> meshRequests;
-		ObjectAllocator<DeviceInfo> devices;
 		ObjectAllocator<SoundPropagationSystem> systems;
 		ObjectAllocator<SoundScene> scenes;
 		ObjectAllocator<SoundSource> sources;
@@ -485,8 +431,7 @@ class SoundLibrary
 		
 		/// An object that manages the on-disk resources for the sound library.
 		om::resources::ResourceManager resourceManager;
-		om::sound::SoundResourceModule soundResourceModule;
-		
+
 		/// A mutex that handles synchronizing access to the library.
 		Mutex mutex;
 		
@@ -535,98 +480,6 @@ extern "C" void GSOUND_EXPORT gsGetVersion( gsSize* major, gsSize* minor, gsSize
 	if ( minor ) *minor = GSOUND_MINOR_VERSION;
 	if ( revision ) *revision = GSOUND_REVISION;
 }
-
-
-
-
-//##########################################################################################
-//##########################################################################################
-//############		
-//############		Device Methods
-//############		
-//##########################################################################################
-//##########################################################################################
-
-
-
-
-extern "C" gsDeviceID GSOUND_EXPORT gsNewDefaultDevice()
-{
-	Shared<DeviceInfo> deviceInfo = Shared<DeviceInfo>::construct();
-	om::sound::SoundDeviceDelegate delegate;
-	delegate.outputCallback = om::bind( &DeviceInfo::output, deviceInfo.getPointer() );
-	deviceInfo->device.setDelegate( delegate );
-	
-	ScopedMutex lock( library->mutex );
-	gsDeviceID deviceID = library->devices.add( deviceInfo );
-	
-	return deviceID;
-}
-
-
-
-
-extern "C" void GSOUND_EXPORT gsDeleteDevice( gsDeviceID deviceID )
-{
-	ScopedMutex lock( library->mutex );
-	library->devices.remove( deviceID );
-}
-
-
-
-
-extern "C" gsBool GSOUND_EXPORT gsDeviceSetSystem( gsDeviceID deviceID, gsSystemID systemID, gsListenerID listenerID )
-{
-	ScopedMutex lock( library->mutex );
-	Shared<DeviceInfo> device;
-	Shared<SoundPropagationSystem> system;
-	Shared<SoundListener> listener;
-	
-	if ( library->devices.find( deviceID, device ) && library->systems.find( systemID, system ) &&
-		library->listeners.find( listenerID, listener ) )
-	{
-		device->system = system;
-		device->listener = listener;
-		return true;
-	}
-	
-	return false;
-}
-
-
-
-
-extern "C" gsBool GSOUND_EXPORT gsDeviceStart( gsDeviceID deviceID )
-{
-	ScopedMutex lock( library->mutex );
-	Shared<DeviceInfo> device;
-	
-	if ( library->devices.find( deviceID, device ) )
-	{
-		device->device.start();
-		return true;
-	}
-	
-	return false;
-}
-
-
-
-
-extern "C" gsBool GSOUND_EXPORT gsDeviceStop( gsDeviceID deviceID )
-{
-	ScopedMutex lock( library->mutex );
-	Shared<DeviceInfo> device;
-	
-	if ( library->devices.find( deviceID, device ) )
-	{
-		device->device.stop();
-		return true;
-	}
-	
-	return false;
-}
-
 
 
 

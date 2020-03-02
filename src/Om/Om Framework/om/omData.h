@@ -36,7 +36,6 @@
 
 #include "data/omDataConfig.h"
 
-#include "data/omBuffer.h"
 
 #include "data/omData.h"
 #include "data/omDataBuffer.h"

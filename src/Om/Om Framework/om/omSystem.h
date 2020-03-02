@@ -37,12 +37,7 @@
 #include "system/omSystemConfig.h"
 
 
-#include "system/omMemory.h"
 #include "system/omCPU.h"
-
-#include "system/omDisplayID.h"
-#include "system/omDisplayMode.h"
-#include "system/omDisplay.h"
 
 
 

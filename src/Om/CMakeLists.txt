@@ -2,7 +2,6 @@ project(Om)
 
 add_subdirectory(Om\ Framework)
 add_subdirectory(Om\ BVH)
-add_subdirectory(Om\ Compression)
 add_subdirectory(Om\ Resources)
 add_subdirectory(Om\ Sound)
 

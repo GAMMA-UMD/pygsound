@@ -43,7 +43,6 @@
 
 // SIMD Scalar/Vector Classes.
 #include "omSIMDScalar.h"
-#include "omSIMDScalarInt8_16.h"
 #include "omSIMDScalarInt16_8.h"
 #include "omSIMDScalarInt32_4.h"
 #include "omSIMDScalarInt64_2.h"
@@ -54,7 +53,6 @@
 #include "omSIMDArray.h"
 #include "omSIMDArrayInt32.h"
 #include "omSIMDArrayFloat32.h"
-#include "omSIMDArrayFloat64.h"
 
 // SIMD Math Primitive Types
 #include "omSIMDVector3D.h"

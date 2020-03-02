@@ -39,7 +39,6 @@
 
 #include "omSoundFilter.h"
 #include "omSoundResampler.h"
-#include "../omSoundPlugins.h"
 
 
 //##########################################################################################
@@ -110,25 +109,6 @@ class SoundPlayer : public SoundFilter, public SoundInputStream
 								pan(),
 								speed( 1 ),
 								gain( 1 ),
-								priority( 0 ),
-								loopCount( 0 ),
-								userID( 0 ),
-								loop( false )
-						{
-						}
-						
-						
-						/// Create a new playback instance for the specified sound region.
-						OM_INLINE Instance( const SoundRegion& region )
-							:	stream( region.sound ),
-								insert( region.insert ? region.insert->getFilter() : (SoundFilter*)NULL ),
-								start( region.start ),
-								length( region.length ),
-								fadeInTime( region.fadeInTime ),
-								fadeOutTime( region.fadeOutTime ),
-								pan( region.pan ),
-								speed( region.speed ),
-								gain( region.gain ),
 								priority( 0 ),
 								loopCount( 0 ),
 								userID( 0 ),
