@@ -4,8 +4,10 @@ addons:
       # update: true
       packages: 
       - python3
-      - fftw
       - cmake
+before_install:
+    - brew install libsndfile
+    - brew install fftw
 # command to install dependencies
 install:
   - python3 setup.py develop
