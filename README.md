@@ -9,11 +9,10 @@ pygsound
 Dependencies
 --------
 
-You may need several 3rd-party libraries. Known ones are `vorbis` and `fftw3` and can be installed by running the following code on Linux:
+You need `fftw3` library which can be installed by running the following code on Linux:
 ```
 sudo apt-get update
 sudo apt-get -y install libfftw3-dev
-sudo apt-get -y install libvorbis-dev
 ```
 
 Building
