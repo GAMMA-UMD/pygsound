@@ -824,7 +824,7 @@ class GenericString
 				
 				if ( this->toDouble( d ) )
 				{
-					value = safeTypeConversion<Int>( d );
+					value = safeTypeConversion<Int, Double>( d );
 					return true;
 				}
 				
@@ -842,7 +842,7 @@ class GenericString
 				
 				if ( this->toDouble( d ) )
 				{
-					value = safeTypeConversion<UInt>( d );
+					value = safeTypeConversion<UInt, Double>( d );
 					return true;
 				}
 				
@@ -860,7 +860,7 @@ class GenericString
 				
 				if ( this->toDouble( d ) )
 				{
-					value = safeTypeConversion<Int32>( d );
+					value = safeTypeConversion<Int32, Double>( d );
 					return true;
 				}
 				
@@ -878,7 +878,7 @@ class GenericString
 				
 				if ( this->toDouble( d ) )
 				{
-					value = safeTypeConversion<UInt32>( d );
+					value = safeTypeConversion<UInt32, Double>( d );
 					return true;
 				}
 				
@@ -896,7 +896,7 @@ class GenericString
 				
 				if ( this->toDouble( d ) )
 				{
-					value = safeTypeConversion<Int64>( d );
+					value = safeTypeConversion<Int64, Double>( d );
 					return true;
 				}
 				
@@ -914,7 +914,7 @@ class GenericString
 				
 				if ( this->toDouble( d ) )
 				{
-					value = safeTypeConversion<UInt64>( d );
+					value = safeTypeConversion<UInt64, Double>( d );
 					return true;
 				}
 				
@@ -934,7 +934,7 @@ class GenericString
 				
 				if ( this->toDouble( d ) )
 				{
-					value = safeTypeConversion<T>( d );
+					value = safeTypeConversion<T, Double>( d );
 					return true;
 				}
 				
@@ -974,7 +974,7 @@ class GenericString
 				
 				if ( convertStringToNumber( stringStart, stringEnd, d ) )
 				{
-					result = safeTypeConversion<Int>( d );
+					result = safeTypeConversion<Int, Double>( d );
 					return true;
 				}
 				
@@ -996,7 +996,7 @@ class GenericString
 				
 				if ( convertStringToNumber( stringStart, stringEnd, d ) )
 				{
-					result = safeTypeConversion<Int32>( d );
+					result = safeTypeConversion<Int32, Double>( d );
 					return true;
 				}
 				
@@ -1018,7 +1018,7 @@ class GenericString
 				
 				if ( convertStringToNumber( stringStart, stringEnd, d ) )
 				{
-					result = safeTypeConversion<UInt32>( d );
+					result = safeTypeConversion<UInt32, Double>( d );
 					return true;
 				}
 				
@@ -1040,7 +1040,7 @@ class GenericString
 				
 				if ( convertStringToNumber( stringStart, stringEnd, d ) )
 				{
-					result = safeTypeConversion<Int64>( d );
+					result = safeTypeConversion<Int64, Double>( d );
 					return true;
 				}
 				
@@ -1062,7 +1062,7 @@ class GenericString
 				
 				if ( convertStringToNumber( stringStart, stringEnd, d ) )
 				{
-					result = safeTypeConversion<UInt64>( d );
+					result = safeTypeConversion<UInt64, Double>( d );
 					return true;
 				}
 				
@@ -1113,7 +1113,7 @@ class GenericString
 				
 				if ( convertStringToNumber( stringStart, stringEnd, d ) )
 				{
-					result = safeTypeConversion<T>( d );
+					result = safeTypeConversion<T, Double>( d );
 					return true;
 				}
 				

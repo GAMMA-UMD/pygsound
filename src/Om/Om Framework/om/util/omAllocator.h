@@ -860,7 +860,7 @@ OM_INLINE T* constructArray( Size number, const P1& p1 )
 
 /// Construct and allocate an array of objects of the templated type T with 2 constructor parameters.
 template < typename T, typename P1, typename P2 >
-OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2 )
+OM_INLINE void* constructArray( Size number, const P1& p1, const P2& p2 )
 {
 	T* objects = allocate<T>( number );
 	Allocator::constructArray( objects, number, p1, p2 );
@@ -872,7 +872,7 @@ OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2 )
 
 /// Construct and allocate an array of objects of the templated type T with 3 constructor parameters.
 template < typename T, typename P1, typename P2, typename P3 >
-OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3& p3 )
+OM_INLINE void* constructArray( Size number, const P1& p1, const P2& p2, const P3& p3 )
 {
 	T* objects = allocate<T>( number );
 	Allocator::constructArray( objects, number, p1, p2, p3 );
@@ -884,7 +884,7 @@ OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3
 
 /// Construct and allocate an array of objects of the templated type T with 4 constructor parameters.
 template < typename T, typename P1, typename P2, typename P3, typename P4 >
-OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4 )
+OM_INLINE void* constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4 )
 {
 	T* objects = allocate<T>( number );
 	Allocator::constructArray( objects, number, p1, p2, p3, p4 );
@@ -896,7 +896,7 @@ OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3
 
 /// Construct and allocate an array of objects of the templated type T with 5 constructor parameters.
 template < typename T, typename P1, typename P2, typename P3, typename P4, typename P5 >
-OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5 )
+OM_INLINE void* constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5 )
 {
 	T* objects = allocate<T>( number );
 	Allocator::constructArray( objects, number, p1, p2, p3, p4, p5 );
@@ -909,7 +909,7 @@ OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3
 /// Construct and allocate an array of objects of the templated type T with 6 constructor parameters.
 template < typename T, typename P1, typename P2, typename P3, typename P4, typename P5,
 						typename P6 >
-OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5, const P6& p6 )
+OM_INLINE void* constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5, const P6& p6 )
 {
 	T* objects = allocate<T>( number );
 	Allocator::constructArray( objects, number, p1, p2, p3, p4, p5, p6 );
@@ -922,7 +922,7 @@ OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3
 /// Construct and allocate an array of objects of the templated type T with 7 constructor parameters.
 template < typename T, typename P1, typename P2, typename P3, typename P4, typename P5,
 						typename P6, typename P7 >
-OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5, const P6& p6, const P7& p7 )
+OM_INLINE void* constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5, const P6& p6, const P7& p7 )
 {
 	T* objects = allocate<T>( number );
 	Allocator::constructArray( objects, number, p1, p2, p3, p4, p5, p6, p7 );
@@ -935,7 +935,7 @@ OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3
 /// Construct and allocate an array of objects of the templated type T with 8 constructor parameters.
 template < typename T, typename P1, typename P2, typename P3, typename P4, typename P5,
 						typename P6, typename P7, typename P8 >
-OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5, const P6& p6, const P7& p7, const P8& p8 )
+OM_INLINE void* constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5, const P6& p6, const P7& p7, const P8& p8 )
 {
 	T* objects = allocate<T>( number );
 	Allocator::constructArray( objects, number, p1, p2, p3, p4, p5, p6, p7, p8 );
@@ -948,7 +948,7 @@ OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3
 /// Construct and allocate an array of objects of the templated type T with 9 constructor parameters.
 template < typename T, typename P1, typename P2, typename P3, typename P4, typename P5,
 						typename P6, typename P7, typename P8, typename P9 >
-OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5, const P6& p6, const P7& p7, const P8& p8, const P9& p9 )
+OM_INLINE void* constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5, const P6& p6, const P7& p7, const P8& p8, const P9& p9 )
 {
 	T* objects = allocate<T>( number );
 	Allocator::constructArray( objects, number, p1, p2, p3, p4, p5, p6, p7, p8, p9 );
@@ -961,7 +961,7 @@ OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3
 /// Construct and allocate an array of objects of the templated type T with 10 constructor parameters.
 template < typename T, typename P1, typename P2, typename P3, typename P4, typename P5,
 						typename P6, typename P7, typename P8, typename P9, typename P10 >
-OM_INLINE void constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5, const P6& p6, const P7& p7, const P8& p8, const P9& p9, const P10& p10 )
+OM_INLINE void* constructArray( Size number, const P1& p1, const P2& p2, const P3& p3, const P4& p4, const P5& p5, const P6& p6, const P7& p7, const P8& p8, const P9& p9, const P10& p10 )
 {
 	T* objects = allocate<T>( number );
 	Allocator::constructArray( objects, number, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 );

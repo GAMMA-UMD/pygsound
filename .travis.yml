@@ -1,10 +1,22 @@
-language: python
-python:
-  - "3.5"
+language: generic
+jobs:
+  include:
+    - os: osx
+      osx_image: xcode9.4
+    - os: osx
+      osx_image: xcode10.3
+    - os: osx
+      osx_image: xcode11.3
+      
+addons:
+    homebrew:
+      # update: true
+      packages: 
+      - python3
+      - cmake
 before_install:
-  - sudo apt-get update
-  - sudo apt-get -y install libfftw3-dev
-  - sudo apt-get -y install libvorbis-dev
+    - brew install libsndfile
+    - brew install fftw
 # command to install dependencies
 install:
   - python3 setup.py develop

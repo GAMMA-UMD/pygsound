@@ -12,3 +12,4 @@ __pycache__
 *.txt
 *.so
 *.egg-info
+*.so

@@ -4,7 +4,6 @@
 #include "Listener.hpp"
 #include "Context.hpp"
 #include <iostream>
-#include <om/omMath.h>
 
 namespace omm = om::math;
 namespace omt = om::time;
@@ -12,7 +11,6 @@ namespace omt = om::time;
 Scene::Scene()
 {
 	m_scene.addObject( &m_soundObject );
-//    resourceManager.addModule(soundResourceModule);
 }
 
 void
@@ -32,19 +30,14 @@ Scene::computeIR( SoundSource &_source, Listener &_listener, Context &_context )
 	}
     propagator.propagateSound(m_scene, _context.internalPropReq(), sceneIR);
 	const gs::SoundSourceIR& sourceIR = sceneIR.getListenerIR(0).getSourceIR(0);
-//	gs::ImpulseResponse result;
-//	result.setIR(sourceIR, _listener.m_listener, _context.internalIRReq());
-    auto result = std::make_shared<gs::ImpulseResponse>();
-    result->setIR(sourceIR, _listener.m_listener, _context.internalIRReq());
+	gs::ImpulseResponse result;
+	result.setIR(sourceIR, _listener.m_listener, _context.internalIRReq());
 
-	auto rate = result->getSampleRate();
+	auto rate = result.getSampleRate();
 
-    auto *sample = result->getChannel( 0 );
-	std::vector<float> samples(sample, sample+result->getLengthInSamples());
-//	for ( int iter_sample = 0; iter_sample < result->getLengthInSamples(); ++iter_sample )
-//	{
-//		samples.append( sample[iter_sample] );
-//	}
+    auto *sample = result.getChannel( 0 );
+	std::vector<float> samples(sample, sample+result.getLengthInSamples());
+
 	m_scene.clearSources();
 	m_scene.clearListeners();
 
@@ -90,57 +83,3 @@ Scene::computeMultichannelIR( SoundSource &_source, Listener &_listener, Context
 
     return ret;
 }
-
-//om::Bool Scene::saveIR( gs::ImpulseResponse &IR, std::string filename )
-//{
-//    std::cout << "try saving file to " << filename << std::endl;
-//    return resourceManager.save(filename.c_str(), om::sound::Sound(IR.getBuffer()));
-//}
-
-
-//py::dict
-//Scene::computeBinauralIR( SoundSource &_source, Listener &_listener )
-//{
-//    gs::PropagationResult result;
-//    omt::Timer dt;
-//
-//    m_scene.addSource( &_source.m_source);
-//    m_scene.addListener( &_listener.m_listener );
-//    Context::instance->internalContext().updateScene( m_scene.getContextID(),
-//                                                      Context::instance->internalReq(),
-//                                                      dt.getLastInterval(),
-//                                                      &result );
-//
-//    const auto *pair = result.getPair( 0 );
-//    auto &buff = pair->pressureIR;
-//
-//    auto rate = buff.getSampleRate();
-//
-//    auto numOfChannels = int(buff.getChannelCount());
-//    assert(numOfChannels == 2);
-//
-//    py::list samples_left;
-//    auto *sample_left = buff.getChannel( 0 );
-//    for ( int iter_sample = 0; iter_sample < buff.getSize(); ++iter_sample )
-//    {
-//        samples_left.append( sample_left[iter_sample] );
-//    }
-//
-//    py::list samples_right;
-//    auto *sample_right = buff.getChannel( 1 );
-//    for ( int iter_sample = 0; iter_sample < buff.getSize(); ++iter_sample )
-//    {
-//        samples_right.append( sample_right[iter_sample] );
-//    }
-//    py::dict ret;
-//    ret["rate"] = rate;
-//    ret["samples_left"] = samples_left;
-//    ret["samples_right"] = samples_right;
-//
-//    m_scene.clearSources();
-//    m_scene.clearListeners();
-//
-//    return ret;
-//}
-//
-
