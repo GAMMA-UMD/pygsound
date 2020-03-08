@@ -24,13 +24,8 @@ public:
 
 	void setMesh( SoundMesh &_mesh );
 
-//	void addSource( SoundSource &_source );
-//	void addListener( Listener &_listener );
-
     py::dict computeIR( SoundSource &_source, Listener &_listener, Context &_context );
-//    py::dict computeBinauralIR( SoundSource &_source, Listener &_listener );
     py::dict computeMultichannelIR( SoundSource &_source, Listener &_listener, Context &_context );
-//    om::Bool saveIR( gs::ImpulseResponse &IR, std::string filename );
 
 public:
 
@@ -38,8 +33,6 @@ public:
 	gs::SoundObject m_soundObject;
 	gs::SoundPropagator propagator;
 	gs::SoundSceneIR sceneIR;
-//    om::resources::ResourceManager resourceManager;
-//    om::sound::resources::SoundResourceModule soundResourceModule;
 
 };
 
