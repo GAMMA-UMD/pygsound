@@ -22,7 +22,6 @@ addons:
         - libfftw3-dev
         - libsndfile-dev
     homebrew:
-      # update: true
       packages: 
       - python3
       - cmake
