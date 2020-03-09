@@ -36,7 +36,7 @@ before_install:
 
 # command to install dependencies
 install:
-  - sudo python3 setup.py install
+  - sudo python setup.py install
 # command to run tests
 script:
   - python3 setup.py test
