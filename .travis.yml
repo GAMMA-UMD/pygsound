@@ -18,7 +18,7 @@ addons:
 #        - python3-pip
 #        - python3-setuptools
         - cmake
-	- gobjc++
+        - gobjc++
         - libfftw3-dev
         - libsndfile-dev
     homebrew:
