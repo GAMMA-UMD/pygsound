@@ -4,6 +4,9 @@ jobs:
     - os: linux
       language: python
       python: 3.5
+    - os: linux
+      language: python
+      python: 3.8
     - os: osx
       osx_image: xcode9.4
     - os: osx
@@ -12,9 +15,10 @@ jobs:
 addons:
     apt:
       packages:
-        - python3-pip
-        - python3-setuptools
+#        - python3-pip
+#        - python3-setuptools
         - cmake
+	- gobjc++
         - libfftw3-dev
         - libsndfile-dev
     homebrew:
