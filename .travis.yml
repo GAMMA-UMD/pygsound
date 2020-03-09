@@ -28,7 +28,7 @@ before_install:
 
 # command to install dependencies
 install:
-  - python3 setup.py develop
+  - python3 setup.py develop --user
 # command to run tests
 script:
   - python3 setup.py test
