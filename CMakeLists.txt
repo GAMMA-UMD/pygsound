@@ -12,7 +12,6 @@ endif()
 #set build directory
 set(BUILD_DIRECTORY ${CMAKE_BUILD_TYPE})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-narrowing -Wno-deprecated")
-set(CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS "${CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS} -undefined dynamic_lookup")
 set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BUILD_DIRECTORY}/lib)
 set( CMAKE_CXX_FLAGS_DEBUG "-g -O0 -fPIC --coverage" )
 set( CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -fPIC" )
