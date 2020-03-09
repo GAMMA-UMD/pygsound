@@ -1,10 +1,9 @@
 language: generic
 jobs:
   include:
+    - os: linux
     - os: osx
       osx_image: xcode9.4
-    - os: osx
-      osx_image: xcode10.3
     - os: osx
       osx_image: xcode11.3
       
@@ -15,8 +14,11 @@ addons:
       - python3
       - cmake
 before_install:
-    - brew install libsndfile
-    - brew install fftw
+    - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install libsndfile; fi
+    - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install fftw; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -y install libfftw3-dev; fi
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -y install libsndfile-dev; fi
+
 # command to install dependencies
 install:
   - python3 setup.py develop
