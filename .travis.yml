@@ -19,6 +19,8 @@ addons:
         - gobjc++
         - libfftw3-dev
         - libsndfile-dev
+        - python3-dev
+        - python3-pip
     homebrew:
       packages: 
       - python3
@@ -28,13 +30,13 @@ addons:
 before_install:
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install libsndfile; fi
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install fftw; fi
-    - pip install Cython numpy wavefile
+    - sudo pip3 install Cython numpy wavefile
 #     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -y install libfftw3-dev; fi
 #     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -y install libsndfile-dev; fi
 
 # command to install dependencies
 install:
-  - python3 setup.py install --user
+  - sudo python3 setup.py install
 # command to run tests
 script:
   - python3 setup.py test
