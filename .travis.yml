@@ -13,6 +13,7 @@ addons:
     apt:
       packages:
         - python3-pip
+        - python3-setuptools
         - cmake
     homebrew:
       # update: true
