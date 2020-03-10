@@ -1,6 +1,6 @@
 import os
 import numpy as np
-import pysound as ps
+import pygsound as ps
 from wavefile import WaveWriter, Format
 
 

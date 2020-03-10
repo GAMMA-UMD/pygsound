@@ -1,16 +1,18 @@
 import numpy as np
-import pysound as ps
+import pygsound as ps
 from wavefile import WaveWriter, Format
 
 
 def main():
-    mesh = ps.loadobj("cube.obj", "", 0.5, 0.5)
     ctx = ps.Context()
     ctx.diffuse_count = 20000
     ctx.specular_count = 2000
     ctx.channel_type = ps.ChannelLayoutType.stereo
+    
+    # Simulation using .obj file (and an optional .mtl file)
+    mesh1 = ps.loadobj("cube.obj", "", 0.5, 0.5)    # if the second argument is empty, the code will infer the .mtl name using .obj name
     scene = ps.Scene()
-    scene.setMesh(mesh)
+    scene.setMesh(mesh1)
 
     src_coord = [1, 1, 0.5]
     lis_coord = [5, 3, 0.5]
@@ -25,7 +27,9 @@ def main():
 
     w = WaveWriter('test1.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate']))
     w.write(np.array(res['samples']))
+    print("IR using .obj input written to test1.wav.")
 
+    # Simulation using a shoebox definition
     mesh2 = ps.createbox(10, 6, 2, 0.5, 0.5)
     scene = ps.Scene()
     scene.setMesh(mesh2)
@@ -33,6 +37,7 @@ def main():
     res2 = scene.computeMultichannelIR(src, lis, ctx)
     w2 = WaveWriter('test2.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate']))
     w2.write(np.array(res2['samples']))
+    print("IR using shoebox input written to test1.wav.")
 
 
 if __name__ == '__main__':

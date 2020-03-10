@@ -1,5 +1,5 @@
 import numpy as np
-import pysound as ps
+import pygsound as ps
 import matplotlib.pyplot as plt
 import rirgenerator as rg
 
