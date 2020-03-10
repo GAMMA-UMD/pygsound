@@ -36,7 +36,7 @@ before_install:
 
 # command to install dependencies
 install:
-  - pip install . --user
+  - pip install .
 # command to run tests
 script:
   - python tests/rir_test.py
