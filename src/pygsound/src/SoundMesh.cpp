@@ -32,7 +32,7 @@ SoundMesh::loadObj( const std::string &_path, std::string _basepath, float _forc
 		auto loc = _path.rfind('/');
 		_basepath = _path;
 		_basepath.erase(loc + 1);
-		std::cout << "mesh path: " << _path << std::endl << "inferred base path: " << _basepath << std::endl;
+		//std::cout << "mesh path: " << _path << std::endl << "inferred base path: " << _basepath << std::endl;
 	}
 
 	bool errv = tinyobj::LoadObj( &attrib, &shapes, &materials, &err, _path.c_str(), _basepath.c_str() );
@@ -74,7 +74,7 @@ SoundMesh::loadObj( const std::string &_path, std::string _basepath, float _forc
 		if (0 < _forceabsorp)
 		{
 			auto absorpsample = om::Float(_forceabsorp);
-			std::cout << "Using user-defined absorption " << absorpsample <<  " for " << _path << std::endl;
+			//std::cout << "Using user-defined absorption " << absorpsample <<  " for " << _path << std::endl;
 			for (std::size_t i = 0; i < spec.size(); ++i)
 				reflec.setFrequency(spec[i], std::sqrt(1.0f - absorpsample));
 		}
@@ -115,7 +115,7 @@ SoundMesh::loadObj( const std::string &_path, std::string _basepath, float _forc
 		if (0 < _forcescatter)
 		{
 			auto scattersample = om::Float(_forcescatter);
-			std::cout << "Using user-defined scattering " << scattersample <<  " for " << _path << std::endl;
+			//std::cout << "Using user-defined scattering " << scattersample <<  " for " << _path << std::endl;
 			for (std::size_t i = 0; i < spec.size(); ++i)
 				scatter.setFrequency(spec[i], scattersample);
 		}
@@ -141,7 +141,7 @@ SoundMesh::loadObj( const std::string &_path, std::string _basepath, float _forc
 		trans = gs::FrequencyResponse( 0.0f );
 
 		mats.emplace_back( reflec, scatter, trans );
-		std::cout << "Average scattering: " << mats[mats.size()-1].getScattering().getAverage() << std::endl;
+		//std::cout << "Average scattering: " << mats[mats.size()-1].getScattering().getAverage() << std::endl;
 	}
 
 	for ( const auto &shape : shapes )
