@@ -9,7 +9,6 @@ __pycache__
 .DS_Store
 *.wav
 *.png
-*.txt
 *.so
 *.egg-info
 *.so
