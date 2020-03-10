@@ -2,9 +2,11 @@ language: generic
 jobs:
   include:
     - os: linux
+      dist: xenial
       language: python
       python: 3.5
     - os: linux
+      dist: bionic
       language: python
       python: 3.7
     - os: osx
@@ -25,14 +27,11 @@ addons:
       packages: 
       - python3
       - cmake
-#       - libsndfile
-#       - fftw
+
 before_install:
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install libsndfile; fi
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install fftw; fi
     - pip install setuptools Cython numpy wavefile
-#     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -y install libfftw3-dev; fi
-#     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -y install libsndfile-dev; fi
 
 # command to install dependencies
 install:
