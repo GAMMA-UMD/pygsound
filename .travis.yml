@@ -31,11 +31,11 @@ before_install:
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install libsndfile; fi
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install fftw; fi
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install python$TRAVIS_PYTHON_VERSION-dev; fi
-    - pip install setuptools Cython numpy wavefile
+    - pip3 install setuptools Cython numpy wavefile
 
 # command to install dependencies
 install:
-  - python setup.py install
+  - python3 setup.py install
 # command to run tests
 script:
-  - python setup.py test
+  - python3 setup.py test
