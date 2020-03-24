@@ -4,13 +4,13 @@ from wavefile import WaveWriter, Format
 
 
 def main():
+    # Simulation using .obj file (and an optional .mtl file)
     ctx = ps.Context()
     ctx.diffuse_count = 20000
     ctx.specular_count = 2000
     ctx.channel_type = ps.ChannelLayoutType.stereo
     
-    # Simulation using .obj file (and an optional .mtl file)
-    mesh1 = ps.loadobj("cube.obj", "", 0.5, 0.5)    # if the second argument is empty, the code will infer the .mtl name using .obj name
+    mesh1 = ps.loadobj("cube.obj", "")    # if the second argument is empty, the code will infer the .mtl name using .obj name
     scene = ps.Scene()
     scene.setMesh(mesh1)
 
@@ -30,14 +30,19 @@ def main():
     print("IR using .obj input written to test1.wav.")
 
     # Simulation using a shoebox definition
+    ctx = ps.Context()
+    ctx.diffuse_count = 20000
+    ctx.specular_count = 2000
+    ctx.channel_type = ps.ChannelLayoutType.stereo
+
     mesh2 = ps.createbox(10, 6, 2, 0.5, 0.5)
     scene = ps.Scene()
     scene.setMesh(mesh2)
 
-    res2 = scene.computeMultichannelIR(src, lis, ctx)
+    res = scene.computeMultichannelIR(src, lis, ctx)
     w2 = WaveWriter('test2.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate']))
-    w2.write(np.array(res2['samples']))
-    print("IR using shoebox input written to test1.wav.")
+    w2.write(np.array(res['samples']))
+    print("IR using shoebox input written to test2.wav.")
 
 
 if __name__ == '__main__':
