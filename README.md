@@ -61,7 +61,7 @@ The benefit of using the `.obj` style is that you can easily define different re
 Citations
 --------
 
-This sound propagation engine has been used for many research work of **Dr Carl Schissler** and other researchers in the [UMD GAMMA](https://gamma.umd.edu) group. For example:
+This sound propagation engine has been used for many research work of **Dr Carl Schissler** and other researchers in the [UMD GAMMA](https://gamma.umd.edu) group for audio rendering and impulse response generation purposes. For example:
 ```
 @inproceedings{schissler2011gsound,
   title={Gsound: Interactive sound propagation for games},
@@ -80,6 +80,13 @@ This sound propagation engine has been used for many research work of **Dr Carl 
   pages={2},
   year={2017},
   publisher={ACM}
+}
+
+@article{tang2019improving,
+  title={Improving reverberant speech training using diffuse acoustic simulation},
+  author={Tang, Zhenyu and Chen, Lianwu and Wu, Bo and Yu, Dong and Manocha, Dinesh},
+  journal={arXiv preprint arXiv:1907.03988},
+  year={2019}
 }
 ```
 For a complete list of relevant work you may want to cite depending on how you use this repo, see our [speech related research](https://gamma.umd.edu/researchdirections/speech/main) and [sound related research](https://gamma.umd.edu/researchdirections/sound/main).
