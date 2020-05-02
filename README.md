@@ -82,11 +82,14 @@ This sound propagation engine has been used for many research work of **Dr Carl 
   publisher={ACM}
 }
 
-@article{tang2019improving,
-  title={Improving reverberant speech training using diffuse acoustic simulation},
-  author={Tang, Zhenyu and Chen, Lianwu and Wu, Bo and Yu, Dong and Manocha, Dinesh},
-  journal={arXiv preprint arXiv:1907.03988},
-  year={2019}
+@inproceedings{9052932,
+  author={Z. {Tang} and L. {Chen} and B. {Wu} and D. {Yu} and D. {Manocha}},  
+  booktitle={ICASSP 2020 - 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},  
+  title={Improving Reverberant Speech Training Using Diffuse Acoustic Simulation},   
+  year={2020},  
+  volume={},  
+  number={},  
+  pages={6969-6973},
 }
 ```
 For a complete list of relevant work you may want to cite depending on how you use this repo, see our [speech related research](https://gamma.umd.edu/researchdirections/speech/main) and [sound related research](https://gamma.umd.edu/researchdirections/sound/main).
