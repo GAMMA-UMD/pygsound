@@ -20,7 +20,7 @@ sudo apt-get -y install cmake python3-dev gobjc++ libfftw3-dev
 On MacOS, install dependencies using:
 ```
 brew update
-brew install cmake python3 fftw
+brew install cmake python3 fftw pkgconfig
 ```
 
 *Note: if you use a virtual environment, please make sure the python version in your virtual env is consistent with your system-wide python version. Otherwise the `python3-dev` package may not be found by the CMake and is unusable.*
