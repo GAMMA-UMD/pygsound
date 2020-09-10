@@ -44,6 +44,8 @@ cd pygsound
 pip3 install .
 ```
 
+Note that the test module requires `libsndfile`, which is an additional dependency you need to install.
+
 Usage
 --------
 
