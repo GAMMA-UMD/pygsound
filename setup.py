@@ -8,7 +8,8 @@ import multiprocessing
 
 from distutils.version import LooseVersion
 from setuptools import setup, find_packages, Extension
-from setuptools.command.build_ext import build_ext
+# from setuptools.command.build_ext import build_ext
+from cmake_setup import *
 
 
 class CMakeExtension(Extension):
@@ -72,8 +73,10 @@ setup(
     version='0.1',
     author='Zhenyu Tang, Carl Schissler, Dinesh Manocha',
     author_email='zhy@cs.umd.edu',
-    description='An room impulse response simulator using for geometric sound propagation',
+    description='An room impulse response simulator using geometric sound propagation',
     long_description='',
+    url='https://github.com/RoyJames/pygsound',
+    download_url = 'https://github.com/RoyJames/pygsound/archive/v0.1.tar.gz',
     # tell setuptools to look for any packages under 'src'
     packages=find_packages('src'),
     # tell setuptools that all packages will be under the 'src' directory
@@ -82,7 +85,7 @@ setup(
     # add an extension module named 'pygsound' to the package 'pygsound'
     ext_modules=[CMakeExtension('pygsound/pygsound')],
     # add custom build_ext command
-    cmdclass=dict(build_ext=CMakeBuild),
+    cmdclass=dict(build_ext=CMakeBuildExt),
     zip_safe=False,
     test_suite='tests',
     install_requires=[
