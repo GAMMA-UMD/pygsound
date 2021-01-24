@@ -239,3 +239,71 @@ SoundMesh::createBox( float _width, float _length, float _height, float _absorp,
 
 	return ret;
 }
+
+
+std::shared_ptr< SoundMesh >
+SoundMesh::createBox( float _width, float _length, float _height, std::vector<float> _absorp, float _scatter )
+{
+    std::vector< gs::SoundVertex > verts;
+    std::vector< gs::SoundTriangle > tris;
+    std::vector< gs::SoundMaterial > mats;
+
+    // reserve
+    std::size_t nverts = 8;
+    std::size_t ntris = 12;
+    std::size_t nmats = 1;
+
+    verts.reserve( nverts );
+    tris.reserve( ntris );
+    mats.reserve( nmats );
+
+    verts.emplace_back( 0.0f, 0.0f, 0.0f );	//0
+    verts.emplace_back( _width, 0.0f, 0.0f );	//1
+    verts.emplace_back( 0.0f, 0.0f, _height );	//2
+    verts.emplace_back( _width, 0.0f, _height );	//3
+    verts.emplace_back( 0.0f, _length, 0.0f );	//4
+    verts.emplace_back( _width, _length, 0.0f );	//5
+    verts.emplace_back( 0.0f, _length, _height );	//6
+    verts.emplace_back( _width, _length, _height );	//7
+
+    tris.emplace_back(1, 2, 0, 0);
+    tris.emplace_back(3, 6, 2, 0);
+    tris.emplace_back(7, 4, 6, 0);
+    tris.emplace_back(5, 0, 4, 0);
+    tris.emplace_back(6, 0, 2, 0);
+    tris.emplace_back(3, 5, 7, 0);
+    tris.emplace_back(1, 3, 2, 0);
+    tris.emplace_back(3, 7, 6, 0);
+    tris.emplace_back(7, 5, 4, 0);
+    tris.emplace_back(5, 1, 0, 0);
+    tris.emplace_back(6, 4, 0, 0);
+    tris.emplace_back(3, 1, 5, 0);
+
+    const std::vector<float> spec{ 63.0f, 125.0f, 250.0f, 500.0f, 1000.0f, 2000.0f, 4000.0f, 8000.0f };
+    if ( spec.size() != _absorp.size() )
+        throw std::runtime_error( "Absorption coefficient list has incompatible length!" );
+
+    gs::FrequencyResponse reflec, scatter, trans;
+
+    for (std::size_t i = 0; i < spec.size(); ++i)
+        reflec.setFrequency(spec[i], std::sqrt(1.0f - _absorp[i]));
+
+    for (std::size_t i = 0; i < spec.size(); ++i)
+        scatter.setFrequency(spec[i], _scatter);
+
+    trans = gs::FrequencyResponse( 0.0f );
+
+    mats.emplace_back( reflec, scatter, trans );
+
+    auto ret = std::make_shared< SoundMesh >();
+
+    gs::SoundMeshPreprocessor preprocessor;
+
+    if ( !preprocessor.processMesh( &verts[0], verts.size(),
+                                    &tris[0], tris.size(),
+                                    &mats[0], mats.size(), gs::MeshRequest(), ret->m_mesh ) )
+        throw std::runtime_error( "Cannot preprocess sound mesh!" );
+
+
+    return ret;
+}

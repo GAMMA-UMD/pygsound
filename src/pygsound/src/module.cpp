@@ -42,10 +42,15 @@ PYBIND11_MODULE(pygsound, ps)
 
 	ps.def( "loadobj", &SoundMesh::loadObj, "A function to load mesh and materials",
             py::arg("_path"), py::arg("_basepath"), py::arg("_forceabsorp") = -1.0, py::arg("_forcescatter") = -1.0 );
-	ps.def( "createbox", &SoundMesh::createBox, "A function to create a simple shoebox mesh",
-			py::arg("_width"), py::arg("_length"), py::arg("_height"), py::arg("_absorp") = 0.5, py::arg("_scatter") = 0.5 );
+    ps.def( "createbox", py::overload_cast<float, float, float, float, float>(&SoundMesh::createBox),
+            "A function to create a simple shoebox mesh", py::arg("_width"), py::arg("_length"), py::arg("_height"),
+            py::arg("_absorp") = 0.5, py::arg("_scatter") = 0.5 );
+    ps.def( "createbox", py::overload_cast<float, float, float, std::vector<float>, float>(&SoundMesh::createBox),
+            "A function to create a simple shoebox mesh", py::arg("_width"), py::arg("_length"), py::arg("_height"),
+            py::arg("_absorp"), py::arg("_scatter") = 0.5 );
 
-	py::class_< Scene, std::shared_ptr< Scene > >( ps, "Scene" )
+
+py::class_< Scene, std::shared_ptr< Scene > >( ps, "Scene" )
             .def(py::init<>())
 //            .def( "saveIR", &Scene::saveIR )
 			.def( "setMesh", &Scene::setMesh )
