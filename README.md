@@ -20,7 +20,7 @@ sudo apt-get -y install cmake python3-dev gobjc++ libfftw3-dev
 On MacOS, install dependencies using:
 ```
 brew update
-brew install cmake python3 fftw
+brew install cmake python3 fftw pkgconfig
 ```
 
 *Note: if you use a virtual environment, please make sure the python version in your virtual env is consistent with your system-wide python version. Otherwise the `python3-dev` package may not be found by the CMake and is unusable.*
@@ -44,6 +44,8 @@ cd pygsound
 pip3 install .
 ```
 
+Note that the test module requires `libsndfile`, which is an additional dependency you need to install.
+
 Usage
 --------
 
@@ -61,7 +63,7 @@ The benefit of using the `.obj` style is that you can easily define different re
 Citations
 --------
 
-This sound propagation engine has been used for many research work of **Dr Carl Schissler** and other researchers in the [UMD GAMMA](https://gamma.umd.edu) group. For example:
+This sound propagation engine has been used for many research work of **Dr Carl Schissler** and other researchers in the [UMD GAMMA](https://gamma.umd.edu) group for audio rendering and impulse response generation purposes. For example:
 ```
 @inproceedings{schissler2011gsound,
   title={Gsound: Interactive sound propagation for games},
@@ -80,6 +82,16 @@ This sound propagation engine has been used for many research work of **Dr Carl 
   pages={2},
   year={2017},
   publisher={ACM}
+}
+
+@inproceedings{9052932,
+  author={Z. {Tang} and L. {Chen} and B. {Wu} and D. {Yu} and D. {Manocha}},  
+  booktitle={ICASSP 2020 - 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},  
+  title={Improving Reverberant Speech Training Using Diffuse Acoustic Simulation},   
+  year={2020},  
+  volume={},  
+  number={},  
+  pages={6969-6973},
 }
 ```
 For a complete list of relevant work you may want to cite depending on how you use this repo, see our [speech related research](https://gamma.umd.edu/researchdirections/speech/main) and [sound related research](https://gamma.umd.edu/researchdirections/sound/main).
