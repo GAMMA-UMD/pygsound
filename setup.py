@@ -10,6 +10,9 @@ from distutils.version import LooseVersion
 from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext
 
+# read the contents of your README file
+from pathlib import Path
+long_description = Path("README.md").read_text()
 
 class CMakeExtension(Extension):
     def __init__(self, name, sourcedir=''):
@@ -71,9 +74,10 @@ setup(
     name='pygsound',
     version='0.1',
     author='Zhenyu Tang, Carl Schissler, Dinesh Manocha',
-    author_email='zhy@cs.umd.edu',
+    author_email='zhy@umd.edu',
     description='An room impulse response simulator using for geometric sound propagation',
-    long_description='',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     # tell setuptools to look for any packages under 'src'
     packages=find_packages('src'),
     # tell setuptools that all packages will be under the 'src' directory
