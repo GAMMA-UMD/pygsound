@@ -5,7 +5,6 @@ set( SOURCEFILES ${SOURCES} )
 
 add_library( gsound STATIC ${SOURCEFILES})
 
-
 set( EXTERNAL_LIBS
 		om-sound
 		om-resources

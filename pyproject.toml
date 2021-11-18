@@ -1,0 +1,9 @@
+[tool.cibuildwheel.linux]
+before-all = "yum install -y fftw-devel"
+
+[[tool.cibuildwheel.overrides]]
+select = "*-musllinux*"
+before-all = "apk add fftw-dev"	
+
+[tool.cibuildwheel.macos]
+before-all = "brew install fftw"
