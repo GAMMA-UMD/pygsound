@@ -60,7 +60,7 @@ jobs:
     name: Upload if release
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
 
     steps:
     - uses: actions/setup-python@v2 
