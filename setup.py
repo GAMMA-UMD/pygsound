@@ -75,7 +75,7 @@ setup(
     version='0.2',
     author='Zhenyu Tang, Carl Schissler, Dinesh Manocha',
     author_email='zhy@umd.edu',
-    description='An room impulse response simulator using for geometric sound propagation',
+    description='A room impulse response simulator using for geometric sound propagation',
     long_description=long_description,
     long_description_content_type='text/markdown',
     # tell setuptools to look for any packages under 'src'
