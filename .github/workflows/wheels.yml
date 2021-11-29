@@ -38,7 +38,7 @@ jobs:
       with:
         submodules: recursive
 
-    - uses: pypa/cibuildwheel@v2.2.2
+    - uses: pypa/cibuildwheel@v2.3.0
       env:
         CIBW_SKIP: "*-win32 *_i686"
         CIBW_ARCHS_MACOS: auto
