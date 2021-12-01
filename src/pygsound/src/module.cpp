@@ -53,10 +53,8 @@ PYBIND11_MODULE(pygsound, ps)
 
 py::class_< Scene, std::shared_ptr< Scene > >( ps, "Scene" )
             .def(py::init<>())
-//            .def( "saveIR", &Scene::saveIR )
 			.def( "setMesh", &Scene::setMesh )
 			.def( "computeIR", &Scene::computeIR )
-//            .def( "computeBinauralIR", &Scene::computeBinauralIR )
             .def( "computeMultichannelIR", &Scene::computeMultichannelIR );
 
 	py::class_< SoundSource, std::shared_ptr< SoundSource > >( ps, "Source" )
@@ -68,15 +66,7 @@ py::class_< Scene, std::shared_ptr< Scene > >( ps, "Scene" )
 	py::class_< Listener, std::shared_ptr< Listener > >( ps, "Listener" )
             .def( py::init<std::vector<float>>() )
 			.def_property( "pos", &Listener::getPosition, &Listener::setPosition )
-			.def_property( "radius", &Listener::getRadius, &Listener::setRadius  )
-//			.def_property( "channel_layout", &Listener::getChannelLayout, &Listener::setChannelLayout  )
-//            .def_property( "channel_layout_type", &Listener::getChannelLayoutType, &Listener::setChannelLayoutType  )
-//            .def( "set_array_layout", &Listener::setArrayLayout)
-//			.def( "__repr__", [](const Listener &L) {
-//                return "<ps.Listener at '" + L.getPosition() + "'>";
-//                }
-//            )
-            ;
+			.def_property( "radius", &Listener::getRadius, &Listener::setRadius  );
 
 
 	py::enum_< oms::ChannelLayout::Type >( ps, "ChannelLayoutType" )

@@ -40,7 +40,7 @@ public:
     void setChannelLayout(oms::ChannelLayout::Type type);
 
     gs::Bool getNormalize();
-    void setNormalize(gs::Bool);
+    void setNormalize(gs::Bool flag);
 
 private:
 
