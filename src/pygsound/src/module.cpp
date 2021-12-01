@@ -35,7 +35,8 @@ PYBIND11_MODULE(pygsound, ps)
             .def_property( "diffuse_depth", &Context::getDiffuseDepth, &Context::setDiffuseDepth )
             .def_property( "threads_count", &Context::getThreadsCount, &Context::setThreadsCount )
             .def_property( "sample_rate", &Context::getSampleRate, &Context::setSampleRate )
-            .def_property( "channel_type", &Context::getChannelLayout, &Context::setChannelLayout );
+            .def_property( "channel_type", &Context::getChannelLayout, &Context::setChannelLayout )
+            .def_property( "normalize", &Context::getNormalize, &Context::setNormalize );
 
 	py::class_< SoundMesh, std::shared_ptr< SoundMesh > >( ps, "SoundMesh" )
             .def(py::init<>());
