@@ -6,6 +6,7 @@ namespace omm = om::math;
 Listener::Listener( std::vector<float> _loc )
 {
 	setPosition( _loc );
+	m_listener.setSensitivity( 0 );
 }
 
 void
