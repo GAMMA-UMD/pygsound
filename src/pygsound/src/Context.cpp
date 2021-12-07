@@ -110,3 +110,13 @@ void Context::setChannelLayout(oms::ChannelLayout::Type type)
 {
     ir_request.channelLayout.setType(type);
 }
+
+gs::Bool Context::getNormalize()
+{
+    return ir_request.normalize;
+}
+
+void Context::setNormalize(gs::Bool flag)
+{
+    ir_request.normalize = flag;
+}

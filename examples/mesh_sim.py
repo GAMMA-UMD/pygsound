@@ -25,9 +25,9 @@ def main():
 
     res = scene.computeMultichannelIR(src, lis, ctx)
 
-    w = WaveWriter('test1.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate']))
-    w.write(np.array(res['samples']))
-    print("IR using .obj input written to test1.wav.")
+    with WaveWriter('test1.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate'])) as w1:
+        w1.write(np.array(res['samples']))
+        print("IR using .obj input written to test1.wav.")
 
     # Simulation using a shoebox definition
     ctx = ps.Context()
@@ -40,9 +40,9 @@ def main():
     scene.setMesh(mesh2)
 
     res = scene.computeMultichannelIR(src, lis, ctx)
-    w2 = WaveWriter('test2.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate']))
-    w2.write(np.array(res['samples']))
-    print("IR using shoebox input written to test2.wav.")
+    with WaveWriter('test2.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate'])) as w:
+        w2.write(np.array(res['samples']))
+        print("IR using shoebox input written to test2.wav.")
 
 
 if __name__ == '__main__':

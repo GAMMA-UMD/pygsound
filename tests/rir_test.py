@@ -2,7 +2,6 @@ import unittest
 import pygsound as ps
 import multiprocessing
 import numpy as np
-from wavefile import WaveWriter, Format
 
 
 class MainTest(unittest.TestCase):

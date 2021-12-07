@@ -39,6 +39,9 @@ public:
     oms::ChannelLayout::Type getChannelLayout();
     void setChannelLayout(oms::ChannelLayout::Type type);
 
+    gs::Bool getNormalize();
+    void setNormalize(gs::Bool flag);
+
 private:
 
 	gs::IRRequest ir_request;
