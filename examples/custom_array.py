@@ -45,8 +45,8 @@ def main():
 
     res = compute_array("cube.obj", src_coord, lis_coord, 0.5, 0.5, custom_array)
 
-    w = WaveWriter('custom_array.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate']))
-    w.write(np.array(res['samples']))
+    with WaveWriter('custom_array.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate'])) as w:
+        w.write(np.array(res['samples']))
 
 
 if __name__ == '__main__':
