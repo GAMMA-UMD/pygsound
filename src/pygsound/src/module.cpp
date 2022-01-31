@@ -55,6 +55,8 @@ py::class_< Scene, std::shared_ptr< Scene > >( ps, "Scene" )
             .def(py::init<>())
 			.def( "setMesh", &Scene::setMesh )
 			.def( "computeIR", &Scene::computeIR )
+			.def( "computeIRPairs", &Scene::computeIRPairs, py::arg("src_radius"), py::arg("lis_radius"),
+			    py::arg("_context"), py::arg("src_pos") = 0.01, py::arg("lis_pos") = 1.0, py::arg("lis_radius") = 0.01 )
             .def( "computeMultichannelIR", &Scene::computeMultichannelIR );
 
 	py::class_< SoundSource, std::shared_ptr< SoundSource > >( ps, "Source" )

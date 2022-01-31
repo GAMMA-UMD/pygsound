@@ -11,7 +11,7 @@ class MainTest(unittest.TestCase):
 
         low = 0.5
         high = 0.99
-        N = 20
+        N = 10
         cnt = 0
         bad_cnt = 0
         margin = 0.1
@@ -23,8 +23,7 @@ class MainTest(unittest.TestCase):
         alphas = 1 - np.random.uniform(low, high, (N, ))
         while (cnt < N):
             alpha = alphas[cnt]
-            scatter = 0.5
-            tasks = [[src_locs[cnt], lis_locs[cnt], 'seed{}_{}'.format(seed, cnt)]]
+            tasks = [[src_locs[cnt], lis_locs[cnt]]]
             status = compute_scene_ir_absorb(roomdims[cnt], tasks, alpha)
             self.assertEqual(status, 0)
             if status:
@@ -32,6 +31,30 @@ class MainTest(unittest.TestCase):
                 bad_configs.append([cnt] + roomdims[cnt] + src_locs[cnt] + lis_locs[cnt] + [alpha])
             cnt += 1
             print('{}/{} bad IR'.format(bad_cnt, cnt))
+
+    def test_rir_pairs(self):
+        roomdim = [10, 10, 10]
+        lis_locs = [[0.5, 0.5, 0.5], [9.5, 9.5, 9.5]]
+        src_locs = [[2.5, 0.5, 0.5], [5.0, 5.0, 5.0], [9.5, 0.5, 0.5]]
+        alpha = 0.5
+
+        mesh = ps.createbox(roomdim[0], roomdim[1], roomdim[2], alpha, 0.5)
+
+        ctx = ps.Context()
+        ctx.diffuse_count = 20
+        ctx.specular_count = 20
+        ctx.threads_count = min(multiprocessing.cpu_count(), 8)
+
+        scene = ps.Scene()
+        scene.setMesh(mesh)
+
+        channel = ps.ChannelLayoutType.mono
+        ctx.channel_type = channel
+        ctx.sample_rate = 16000
+
+        res = scene.computeIRPairs(src_locs, lis_locs, ctx)
+        # TODO: check results
+        pass
 
 
 def compute_scene_ir_absorb(roomdim, tasks, r):
@@ -58,9 +81,7 @@ def compute_scene_ir_absorb(roomdim, tasks, r):
     for task in tasks:
         src_coord = task[0]
         lis_coord = task[1]
-        wavname = task[2]
 
-        cnt = 0
         src = ps.Source(src_coord)
         src.radius = 0.01
 
@@ -76,13 +97,10 @@ def compute_scene_ir_absorb(roomdim, tasks, r):
         res['samples'] = np.atleast_2d(res['samples'])
         if (np.argmax(np.fabs(res['samples'])) == 0):
             status = 1
-            wavname += '_startzero.wav'
         elif (np.max(np.fabs(res['samples'])) == 0):
             status = 2
-            wavname += '_zeromax.wav'
         elif (np.isnan(res['samples']).any()):
             status = 3
-            wavname += '_nan.wav'
 
     return status
 
