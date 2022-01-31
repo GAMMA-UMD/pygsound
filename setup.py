@@ -92,6 +92,5 @@ setup(
     install_requires=[
         'Cython',
         'numpy',
-        'wavefile',
     ],
 )
