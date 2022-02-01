@@ -48,26 +48,30 @@ Scene::computeIR( SoundSource &_source, Listener &_listener, Context &_context )
 }
 
 py::dict
-Scene::computeIRPairs( std::vector<std::vector<float>> &src_pos, std::vector<std::vector<float>> &lis_pos, Context &_context,
+Scene::computeIRPairs( std::vector<std::vector<float>> &_sources, std::vector<std::vector<float>> &_listeners, Context &_context,
                         float src_radius, float src_power, float lis_radius)
 {
-    int n_src = src_pos.size();
-    int n_lis = lis_pos.size();
+    int n_src = _sources.size();
+    int n_lis = _listeners.size();
 
-    // listener propagation is most expensive
-    bool invertBuffer = false;
+    // listener propagation is most expensive, so swap them for computation if there are more listeners
+    bool swapBuffer = false;
+    auto src_pos = std::ref(_sources);
+    auto lis_pos = std::ref(_listeners);
     if (n_src < n_lis){
-        invertBuffer = true;
-        // TODO: invert source and listener for computation only
+        swapBuffer = true;
+        src_pos = std::ref(_listeners);
+        lis_pos = std::ref(_sources);
+        std::swap(n_src, n_lis);
     }
 
-    for (auto p : src_pos){
+    for (auto p : src_pos.get()){
         auto source = new SoundSource(p);
         source->setRadius(src_radius);
         source->setPower(src_power);
         m_scene.addSource( &source->m_source );
     }
-    for (auto p : lis_pos){
+    for (auto p : lis_pos.get()){
         auto listener = new Listener(p);
         listener->setRadius(lis_radius);
         m_scene.addListener( &listener->m_listener );
@@ -98,9 +102,24 @@ Scene::computeIRPairs( std::vector<std::vector<float>> &src_pos, std::vector<std
 	m_scene.clearSources();
 	m_scene.clearListeners();
 
-	py::dict ret;
-	ret["rate"] = rate;
-	ret["samples"] = IRPairs;   // index by [i_src, i_lis]
+    py::dict ret;
+    ret["rate"] = rate;
+
+    // swap the IR buffer if sources and listeners have been swapped
+    if (swapBuffer){
+        py::list swapIRPairs;
+        for (int i_lis = 0; i_lis < n_lis; ++i_lis) {
+            py::list srcSamples;
+            for (int i_src = 0; i_src < n_src; ++i_src){
+                srcSamples.append(IRPairs[i_src].cast<py::list>()[i_lis]);
+            }
+            swapIRPairs.append(srcSamples);
+        }
+        ret["samples"] = swapIRPairs;
+    }else{
+        ret["samples"] = IRPairs;   // index by [i_src, i_lis]
+    }
+
 	return ret;
 }
 
