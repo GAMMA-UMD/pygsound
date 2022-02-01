@@ -2,6 +2,7 @@ import unittest
 import pygsound as ps
 import multiprocessing
 import numpy as np
+import time
 
 
 def check_ir(samples):
@@ -10,13 +11,25 @@ def check_ir(samples):
     assert ~np.isnan(samples).any(), "IR contains NAN"
 
 
+def same_ir(ir1, ir2):
+    start_id = np.argmax(np.abs(ir1))
+    assert start_id == np.argmax(np.abs(ir2)), "IRs have different start sample"
+    minlen = min([len(ir1), len(ir2), start_id + 1000])
+    corrcoef_thresh = 0.9
+    corrcoef = np.corrcoef(ir1[start_id:minlen], ir2[start_id:minlen])[0, 1]
+    assert corrcoef > corrcoef_thresh, "IRs are not similar"
+
+
 class MainTest(unittest.TestCase):
     def test_exception(self):
         self.assertRaises(AssertionError, check_ir, [1, 0, 0])
         self.assertRaises(AssertionError, check_ir, [0, 0, 0])
         self.assertRaises(AssertionError, check_ir, [np.nan, 0, 0])
+        self.assertRaises(AssertionError, same_ir, [1, 0, 0], [0, 1, 0])
+        self.assertRaises(AssertionError, same_ir, [1, 0, 0], [1, 0.5, -0.5])
 
-    def test_rir(self):
+    @staticmethod
+    def test_rir():
         seed = 0
         np.random.seed(seed)
 
@@ -36,7 +49,8 @@ class MainTest(unittest.TestCase):
             compute_scene_ir_absorb(roomdims[cnt], tasks, alpha)
             cnt += 1
 
-    def test_rir_pairs(self):
+    @staticmethod
+    def test_rir_pairs():
         roomdim = [10, 10, 10]
         src_locs = [[0.5, 0.5, 0.5], [9.5, 9.5, 9.5]]
         lis_locs = [[2.5, 0.5, 0.5], [5.0, 5.0, 5.0], [9.5, 0.5, 0.5]]
@@ -45,7 +59,7 @@ class MainTest(unittest.TestCase):
         mesh = ps.createbox(roomdim[0], roomdim[1], roomdim[2], alpha, 0.5)
 
         ctx = ps.Context()
-        ctx.diffuse_count = 2000
+        ctx.diffuse_count = 20000
         ctx.specular_count = 2000
         ctx.threads_count = min(multiprocessing.cpu_count(), 8)
 
@@ -56,10 +70,16 @@ class MainTest(unittest.TestCase):
         ctx.channel_type = channel
         ctx.sample_rate = 16000
 
-        res = scene.computeIRPairs(src_locs, lis_locs, ctx)
-        for src_ir in res['samples']:
-            for lis_ir in src_ir:
-                check_ir(lis_ir)
+        src_lis_res = scene.computeIRPairs(src_locs, lis_locs, ctx)
+        lis_src_res = scene.computeIRPairs(lis_locs, src_locs, ctx)
+
+        for i_src in range(len(src_locs)):
+            for i_lis in range(len(lis_locs)):
+                ir1 = src_lis_res['samples'][i_src][i_lis]
+                ir2 = lis_src_res['samples'][i_lis][i_src]
+                check_ir(ir1)
+                check_ir(ir2)
+                same_ir(ir1, ir2)  # IRs should be similar by reciprocity
 
 
 def compute_scene_ir_absorb(roomdim, tasks, r):
