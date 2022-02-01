@@ -10,7 +10,7 @@ def main():
     ctx.specular_count = 2000
     ctx.channel_type = ps.ChannelLayoutType.stereo
     
-    mesh1 = ps.loadobj("cube.obj", "")    # if the second argument is empty, the code will infer the .mtl name using .obj name
+    mesh1 = ps.loadobj("cube.obj")
     scene = ps.Scene()
     scene.setMesh(mesh1)
 

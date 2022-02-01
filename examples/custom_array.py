@@ -5,7 +5,7 @@ from wavefile import WaveWriter, Format
 
 
 def compute_array(meshpath, src_coord, lis_coord, r, s, micarray):
-    mesh = ps.loadobj(meshpath, os.path.join(os.path.dirname(meshpath), ''), r, s)
+    mesh = ps.loadobj(meshpath, r, s)
     ctx = ps.Context()
     ctx.diffuse_count = 20000
     ctx.specular_count = 2000
