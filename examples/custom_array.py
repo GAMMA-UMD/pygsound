@@ -43,7 +43,7 @@ def main():
     src_coord = [1, 1, 1]
     lis_coord = [0.1, 0.1, 0.1]
 
-    res = compute_array("cube.obj", src_coord, lis_coord, 0.5, 0.5, custom_array)
+    res = compute_array("cube.obj", src_coord, lis_coord, 0.5, 0.1, custom_array)
 
     with WaveWriter('custom_array.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate'])) as w:
         w.write(np.array(res['samples']))

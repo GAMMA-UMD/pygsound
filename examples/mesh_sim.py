@@ -35,7 +35,7 @@ def main():
     ctx.specular_count = 2000
     ctx.channel_type = ps.ChannelLayoutType.stereo
 
-    mesh2 = ps.createbox(10, 6, 2, 0.5, 0.5)
+    mesh2 = ps.createbox(10, 6, 2, 0.5, 0.1)
     scene = ps.Scene()
     scene.setMesh(mesh2)
 
