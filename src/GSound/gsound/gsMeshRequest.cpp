@@ -74,7 +74,7 @@ MeshRequest:: MeshRequest()
 		weldTolerance( 0.00001f ),
 		simplifyTolerance( 0.0001f ),
 		minDiffractionEdgeAngle( 0.0f ),
-		minDiffractionEdgeLength( 0.0f ),
+		minDiffractionEdgeLength( 0.5f ),
 		diffuseResolution( 0.5f ),
 		edgeResolution( 0.5f ),
 		minRaysPerEdge( 1 ),

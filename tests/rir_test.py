@@ -2,7 +2,6 @@ import unittest
 import pygsound as ps
 import multiprocessing
 import numpy as np
-import time
 
 
 def check_ir(samples):

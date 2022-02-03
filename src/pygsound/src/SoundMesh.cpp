@@ -164,10 +164,12 @@ SoundMesh::loadObj( const std::string &_path, float _forceabsorp, float _forcesc
 	auto ret = std::make_shared< SoundMesh >();
 
 	gs::SoundMeshPreprocessor preprocessor;
-
+    gs::MeshRequest meshRequest;
+    meshRequest.minDiffractionEdgeAngle = 30;
+    meshRequest.minDiffractionEdgeLength = 0.5;
 	if ( !preprocessor.processMesh( &verts[0], verts.size(),
 	                                &tris[0], tris.size(),
-	                                &mats[0], mats.size(), gs::MeshRequest(), ret->m_mesh ) )
+	                                &mats[0], mats.size(), meshRequest, ret->m_mesh ) )
 		throw std::runtime_error( "Cannot preprocess sound mesh!" );
 
 

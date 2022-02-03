@@ -125,7 +125,7 @@ class MeshRequest
 			  * If the angle between normals of two neighboring triangles
 			  * is less than this value, then the edge that they share is not diffracting.
 			  * Thus, a larger diffraction angle will result in less diffracting edges while
-			  * lower thresold will result in more edges.
+			  * lower threshold will result in more edges.
 			  */
 			Real minDiffractionEdgeAngle;
 			
