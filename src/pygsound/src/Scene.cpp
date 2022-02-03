@@ -91,9 +91,15 @@ Scene::computeIRPairs( std::vector<std::vector<float>> &_sources, std::vector<st
             const gs::SoundSourceIR& sourceIR = sceneIR.getListenerIR(i_lis).getSourceIR(i_src);
             gs::ImpulseResponse result;
             result.setIR(sourceIR, *m_scene.getListener(i_lis), _context.internalIRReq());
+            auto numOfChannels = int(result.getChannelCount());
 
-            auto *sample = result.getChannel( 0 );
-            std::vector<float> samples(sample, sample+result.getLengthInSamples());
+            py::list samples;
+            for (int ch = 0; ch < numOfChannels; ch++)
+            {
+                auto *sample_ch = result.getChannel(ch);
+                std::vector<float> samples_ch(sample_ch, sample_ch+result.getLengthInSamples());
+                samples.append(samples_ch);
+            }
             srcSamples[i_lis] = samples;
         }
         IRPairs[i_src] = srcSamples;
@@ -140,7 +146,6 @@ Scene::computeMultichannelIR( SoundSource &_source, Listener &_listener, Context
 	auto rate = _context.getSampleRate();
 
     auto numOfChannels = int(result->getChannelCount());
-    assert(numOfChannels > 0);
 
     py::list samples;
     for (int ch = 0; ch < numOfChannels; ch++)
