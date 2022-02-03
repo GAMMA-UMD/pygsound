@@ -45,19 +45,18 @@ PYBIND11_MODULE(pygsound, ps)
             py::arg("_path"), py::arg("_forceabsorp") = -1.0, py::arg("_forcescatter") = -1.0 );
     ps.def( "createbox", py::overload_cast<float, float, float, float, float>(&SoundMesh::createBox),
             "A function to create a simple shoebox mesh", py::arg("_width"), py::arg("_length"), py::arg("_height"),
-            py::arg("_absorp") = 0.5, py::arg("_scatter") = 0.5 );
+            py::arg("_absorp") = 0.5, py::arg("_scatter") = 0.1 );
     ps.def( "createbox", py::overload_cast<float, float, float, std::vector<float>, float>(&SoundMesh::createBox),
             "A function to create a simple shoebox mesh", py::arg("_width"), py::arg("_length"), py::arg("_height"),
-            py::arg("_absorp"), py::arg("_scatter") = 0.5 );
+            py::arg("_absorp"), py::arg("_scatter") = 0.1 );
 
-
-py::class_< Scene, std::shared_ptr< Scene > >( ps, "Scene" )
+    py::class_< Scene, std::shared_ptr< Scene > >( ps, "Scene" )
             .def(py::init<>())
 			.def( "setMesh", &Scene::setMesh )
-			.def( "computeIR", &Scene::computeIR )
-			.def( "computeIRPairs", &Scene::computeIRPairs, py::arg("src_radius"), py::arg("lis_radius"),
-			    py::arg("_context"), py::arg("src_pos") = 0.01, py::arg("lis_pos") = 1.0, py::arg("lis_radius") = 0.01 )
-            .def( "computeMultichannelIR", &Scene::computeMultichannelIR );
+			.def( "computeIR", py::overload_cast<std::vector<SoundSource>&, std::vector<Listener>&, Context&>(&Scene::computeIR),
+                  "A function to calculate IRs based on pre-defined sources and listeners", py::arg("_sources"), py::arg("_listeners"), py::arg("_context"))
+			.def( "computeIR", py::overload_cast<std::vector<std::vector<float>>&, std::vector<std::vector<float>>&, Context&, float, float, float>(&Scene::computeIR),
+                  "A function to calculate IRs based on source and listener locations", py::arg("_sources"), py::arg("_listeners"), py::arg("_context"), py::arg("src_radius") = 0.01, py::arg("src_power") = 1.0, py::arg("lis_radius") = 0.01 );
 
 	py::class_< SoundSource, std::shared_ptr< SoundSource > >( ps, "Source" )
             .def( py::init<std::vector<float>>() )

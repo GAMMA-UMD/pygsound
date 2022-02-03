@@ -23,10 +23,10 @@ def main():
     lis = ps.Listener(lis_coord)
     lis.radius = 0.01
 
-    res = scene.computeMultichannelIR(src, lis, ctx)
-
-    with WaveWriter('test1.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate'])) as w1:
-        w1.write(np.array(res['samples']))
+    res = scene.computeIR([src], [lis], ctx)    # you may pass Nx3 coordinates for multiple source and listeners
+    audio_data = np.array(res['samples'][0][0])     # the IRs are indexed by [i_src, i_lis, i_channel]
+    with WaveWriter('test1.wav', channels=audio_data.shape[0], samplerate=int(res['rate'])) as w1:
+        w1.write(audio_data)
         print("IR using .obj input written to test1.wav.")
 
     # Simulation using a shoebox definition
@@ -39,9 +39,10 @@ def main():
     scene = ps.Scene()
     scene.setMesh(mesh2)
 
-    res = scene.computeMultichannelIR(src, lis, ctx)
-    with WaveWriter('test2.wav', channels=np.shape(res['samples'])[0], samplerate=int(res['rate'])) as w:
-        w2.write(np.array(res['samples']))
+    res = scene.computeIR([src], [lis], ctx)
+    audio_data = np.array(res['samples'][0][0])
+    with WaveWriter('test2.wav', channels=audio_data.shape[0], samplerate=int(res['rate'])) as w2:
+        w2.write(audio_data)
         print("IR using shoebox input written to test2.wav.")
 
 

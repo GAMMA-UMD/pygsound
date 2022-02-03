@@ -69,22 +69,22 @@ class MainTest(unittest.TestCase):
         ctx.channel_type = channel
         ctx.sample_rate = 16000
 
-        src_lis_res = scene.computeIRPairs(src_locs, lis_locs, ctx)
-        lis_src_res = scene.computeIRPairs(lis_locs, src_locs, ctx)
+        src_lis_res = scene.computeIR(src_locs, lis_locs, ctx)
+        lis_src_res = scene.computeIR(lis_locs, src_locs, ctx)
 
         for i_src in range(len(src_locs)):
             for i_lis in range(len(lis_locs)):
-                ir1 = src_lis_res['samples'][i_src][i_lis]
-                ir2 = lis_src_res['samples'][i_lis][i_src]
+                ir1 = src_lis_res['samples'][i_src][i_lis][0]
+                ir2 = lis_src_res['samples'][i_lis][i_src][0]
                 check_ir(ir1)
                 check_ir(ir2)
-                same_ir(ir1[0], ir2[0])  # IRs should be similar by reciprocity
+                same_ir(ir1, ir2)  # IRs should be similar by reciprocity
 
 
 def compute_scene_ir_absorb(roomdim, tasks, r):
     # Initialize scene mesh
     try:
-        mesh = ps.createbox(roomdim[0], roomdim[1], roomdim[2], r, 0.5)
+        mesh = ps.createbox(roomdim[0], roomdim[1], roomdim[2], r, 0.1)
     except Exception as e:
         print(str(e))
 
@@ -106,13 +106,12 @@ def compute_scene_ir_absorb(roomdim, tasks, r):
 
         src = ps.Source(src_coord)
         src.radius = 0.01
+        src.power = 1
 
         lis = ps.Listener(lis_coord)
         lis.radius = 0.01
-
-        res = scene.computeIR(src, lis, ctx)
-        res['samples'] = np.atleast_2d(res['samples'])
-        check_ir(res['samples'])
+        res = scene.computeIR([src], [lis], ctx)
+        check_ir(res['samples'][0][0][0])
 
 
 if __name__ == "__main__":

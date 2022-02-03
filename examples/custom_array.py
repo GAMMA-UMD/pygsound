@@ -1,4 +1,3 @@
-import os
 import numpy as np
 import pygsound as ps
 from wavefile import WaveWriter, Format
@@ -19,14 +18,13 @@ def compute_array(meshpath, src_coord, lis_coord, r, s, micarray):
     res = {}
     res_buffer = []
     rate = 0
-    abandon_flag = False
     for offset in micarray:
         lis = ps.Listener((offset + lis_coord).tolist())
         lis.radius = 0.01
 
-        res_ch = scene.computeIR(src, lis, ctx)
+        res_ch = scene.computeIR([src], [lis], ctx)
         rate = res_ch['rate']
-        sa = res_ch['samples']
+        sa = res_ch['samples'][0][0][0]
         res['rate'] = rate
         res_buffer.append(sa)
     res['samples'] = np.zeros((len(res_buffer), np.max([len(ps) for ps in res_buffer])))
