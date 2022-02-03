@@ -24,8 +24,9 @@ public:
 
 	void setMesh( SoundMesh &_mesh );
 
-    py::dict computeIR( SoundSource &_source, Listener &_listener, Context &_context );
-    py::dict computeMultichannelIR( SoundSource &_source, Listener &_listener, Context &_context );
+    py::dict computeIR( std::vector<SoundSource> &_sources, std::vector<Listener> &_listeners, Context &_context );
+    py::dict computeIR( std::vector<std::vector<float>> &_sources, std::vector<std::vector<float>> &_listeners, Context &_context,
+                            float src_radius = 0.01, float src_power = 1.0, float lis_radius = 0.01);
 
 public:
 

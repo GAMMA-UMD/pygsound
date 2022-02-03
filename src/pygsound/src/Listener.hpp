@@ -36,7 +36,7 @@ private:
 	friend std::ostream &operator<<( std::ostream &_strm,
 	                                 const Listener &_list );
 
-	gs::SoundListener   m_listener;
+	gs::SoundListener m_listener;
 };
 
 #endif // INC_LISTENER_HPP

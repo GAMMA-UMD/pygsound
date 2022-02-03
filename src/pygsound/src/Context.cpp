@@ -12,7 +12,7 @@ Context::Context()
     prop_request.flags.set(gs::PropagationFlags::DIFFUSE, true);
     prop_request.flags.set(gs::PropagationFlags::DIFFRACTION, true);
     prop_request.flags.set(gs::PropagationFlags::SOURCE_DIRECTIVITY, false);
-    prop_request.flags.set(gs::PropagationFlags::DOPPLER_SORTING, true);
+    prop_request.flags.set(gs::PropagationFlags::DOPPLER_SORTING, false);
     prop_request.flags.set(gs::PropagationFlags::ADAPTIVE_QUALITY, false);
     prop_request.flags.set(gs::PropagationFlags::AIR_ABSORPTION, true);
     prop_request.flags.set(gs::PropagationFlags::ADAPTIVE_IR_LENGTH, true);

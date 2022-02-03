@@ -20,26 +20,26 @@ namespace oms = om::sound;
 namespace omm = om::math;
 
 std::shared_ptr< SoundMesh >
-SoundMesh::loadObj( const std::string &_path, std::string _basepath, float _forceabsorp, float _forcescatter )
+SoundMesh::loadObj( const std::string &_path, float _forceabsorp, float _forcescatter )
 {
 	tinyobj::attrib_t attrib;
 	std::vector< tinyobj::shape_t > shapes;
 	std::vector< tinyobj::material_t > materials;
 
 	std::string err;
-	if (_basepath.empty())
-	{
-		auto loc = _path.rfind('/');
-		_basepath = _path;
-		_basepath.erase(loc + 1);
-		//std::cout << "mesh path: " << _path << std::endl << "inferred base path: " << _basepath << std::endl;
-	}
+    std::string basepath;
+    auto loc = _path.rfind('/');
+    basepath = _path;
+    basepath.erase(loc + 1);
 
-	bool errv = tinyobj::LoadObj( &attrib, &shapes, &materials, &err, _path.c_str(), _basepath.c_str() );
+
+	bool errv = tinyobj::LoadObj( &attrib, &shapes, &materials, &err, _path.c_str(), basepath.c_str() );
 	if ( !errv )
 		throw std::runtime_error( err );
 	else if ( !err.empty() )
 		std::cerr << "WARNING: " << err << "\n";
+    if ( materials.empty() )
+        std::cerr << "WARNING: no material loaded for " << _path << "\n";
 
 	std::vector< gs::SoundVertex > verts;
 	std::vector< gs::SoundTriangle > tris;
@@ -164,10 +164,12 @@ SoundMesh::loadObj( const std::string &_path, std::string _basepath, float _forc
 	auto ret = std::make_shared< SoundMesh >();
 
 	gs::SoundMeshPreprocessor preprocessor;
-
+    gs::MeshRequest meshRequest;
+    meshRequest.minDiffractionEdgeAngle = 30;
+    meshRequest.minDiffractionEdgeLength = 0.5;
 	if ( !preprocessor.processMesh( &verts[0], verts.size(),
 	                                &tris[0], tris.size(),
-	                                &mats[0], mats.size(), gs::MeshRequest(), ret->m_mesh ) )
+	                                &mats[0], mats.size(), meshRequest, ret->m_mesh ) )
 		throw std::runtime_error( "Cannot preprocess sound mesh!" );
 
 

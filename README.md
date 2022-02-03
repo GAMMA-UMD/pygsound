@@ -49,10 +49,10 @@ pip3 install .
 Usage
 --------
 
-See `examples` folder (they require `libsndfile` module installed). You need to `cd examples` and run `python3 mesh_sim.py` (we recommend starting with this one). This script demonstrates two equivalent ways to define the environment for sound propagation, and save the impulse response as an audio file. You can use a `.obj` file with an optional `.mtl` file with the same name to define the room geometry and materials. In this case, the `.mtl` file has two extra rows compared with conventional `.mtl` file used for visual rendering:
+See `examples` folder (extra modules may be required). You need to `cd examples` and run `python3 mesh_sim.py` (we recommend starting with this one). This script demonstrates two equivalent ways to define the environment for sound propagation, and save the impulse response as an audio file. You can use a `.obj` file with an optional `.mtl` file with the same name to define the room geometry and materials. In this case, the `.mtl` file has two extra rows compared with conventional `.mtl` file used for visual rendering:
 ```
 sound_a 0.5 0.6 0.6 0.7 0.75 0.8 0.9 0.9  # sound absorption coefficients, for 8 octave bands [62.5, 125, 250, 500, 1000, 2000, 4000, 8000]Hz
-sound_s 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 # sound scattering coefficients, if you don't know the details of diffuse/specular reflections, keep it 0.5
+sound_s 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 # sound scattering coefficients, if you don't know the details of diffuse/specular reflections, keep it low
 ```
 or directly create a shoebox shaped room using our API:
 ```
