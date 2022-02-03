@@ -78,7 +78,7 @@ class MainTest(unittest.TestCase):
                 ir2 = lis_src_res['samples'][i_lis][i_src]
                 check_ir(ir1)
                 check_ir(ir2)
-                same_ir(ir1, ir2)  # IRs should be similar by reciprocity
+                same_ir(ir1[0], ir2[0])  # IRs should be similar by reciprocity
 
 
 def compute_scene_ir_absorb(roomdim, tasks, r):
