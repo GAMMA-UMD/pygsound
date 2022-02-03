@@ -72,7 +72,7 @@ class CMakeBuild(build_ext):
 
 setup(
     name='pygsound',
-    version='0.2',
+    version='0.3',
     author='Zhenyu Tang, Carl Schissler, Dinesh Manocha',
     author_email='zhy@umd.edu',
     description='A room impulse response simulator using for geometric sound propagation',
