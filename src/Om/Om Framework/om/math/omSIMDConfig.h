@@ -187,7 +187,7 @@
 	#include <arm_neon.h>
 	#include "sse2neon.h"
 	// Define that ARM Neon instructions are available.
-	#define OM_SIMD_ARM_NEON 1
+	// #define OM_SIMD_ARM_NEON 1
 #endif
 
 
