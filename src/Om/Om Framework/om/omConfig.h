@@ -292,7 +292,7 @@
 	/// The Intel x86/x64 architecture.
 	#define OM_CPU_INTEL
 	
-#elif defined(__arm__)
+#elif defined(__arm__) || defined(__arm64__)
 	/// The ARM CPU architecture.
 	#define OM_CPU_ARM
 	
