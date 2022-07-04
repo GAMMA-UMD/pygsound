@@ -385,7 +385,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar( _mm_and_ps( vf, vector.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar( vandq_s32( vi, scalar.vi ) );
+				return SIMDScalar( vandq_s32( vi, vector.vi ) );
 #else
 				return SIMDScalar( xi[0] & vector.a, xi[1] & vector.b, xi[2] & vector.c, xi[3] & vector.d );
 #endif
@@ -402,7 +402,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar( _mm_or_ps( vf, vector.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar( vorrq_s32( vi, scalar.vi ) );
+				return SIMDScalar( vorrq_s32( vi, vector.vi ) );
 #else
 				return SIMDScalar( xi[0] | vector.a, xi[1] | vector.b, xi[2] | vector.c, xi[3] | vector.d );
 #endif
@@ -419,7 +419,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar( _mm_xor_ps( vf, vector.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar( veorq_s32( vi, scalar.vi ) );
+				return SIMDScalar( veorq_s32( vi, vector.vi ) );
 #else
 				return SIMDScalar( xi[0] ^ vector.a, xi[1] ^ vector.b, xi[2] ^ vector.c, xi[3] ^ vector.d );
 #endif
@@ -496,7 +496,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar<Int32,4>( _mm_cmpeq_ps( vf, scalar.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar<Int32,4>( vceqq_f32( vf, scalar.vf ) );
+				return SIMDScalar<Int32,4>( vreinterpretq_s32_u32( vceqq_f32( vf, scalar.vf ) ) ) ;
 #else
 				return SIMDScalar<Int32,4>( a == scalar.a, b == scalar.b, c == scalar.c, d == scalar.d );
 #endif
@@ -511,7 +511,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar<Int32,4>( _mm_cmpeq_ps( vf, _mm_set1_ps( value ) ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar<Int32,4>( vceqq_f32( vf, vdupq_n_f32(value) ) );
+				return SIMDScalar<Int32,4>( vreinterpretq_s32_u32( vceqq_f32( vf, vdupq_n_f32(value) ) ) );
 #else
 				return SIMDScalar<Int32,4>( a == value, b == value, c == value, d == value );
 #endif
@@ -558,7 +558,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar<Int32,4>( _mm_cmplt_ps( vf, scalar.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar<Int32,4>( vcltq_f32( vf, scalar.vf ) );
+				return SIMDScalar<Int32,4>( vreinterpretq_s32_u32( vcltq_f32( vf, scalar.vf ) ) );
 #else
 				return SIMDScalar<Int32,4>( a < scalar.a, b < scalar.b, c < scalar.c, d < scalar.d );
 #endif
@@ -573,7 +573,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar<Int32,4>( _mm_cmplt_ps( vf, _mm_set1_ps( value ) ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar<Int32,4>( vcltq_f32( vf, vdupq_n_f32( value ) ) );
+				return SIMDScalar<Int32,4>( vreinterpretq_s32_u32( vcltq_f32( vf, vdupq_n_f32( value ) ) ) );
 #else
 				return SIMDScalar<Int32,4>( a < value, b < value, c < value, d < value );
 #endif
@@ -588,7 +588,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar<Int32,4>( _mm_cmpgt_ps( vf, scalar.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar<Int32,4>( vcgtq_f32( vf, scalar.vf ) );
+				return SIMDScalar<Int32,4>( vreinterpretq_s32_u32( vcgtq_f32( vf, scalar.vf ) ) );
 #else
 				return SIMDScalar<Int32,4>( a > scalar.a, b > scalar.b, c > scalar.c, d > scalar.d );
 #endif
@@ -603,7 +603,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar<Int32,4>( _mm_cmpgt_ps( vf, _mm_set1_ps( value ) ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar<Int32,4>( vcgtq_f32( vf, vdupq_n_f32( value ) ) );
+				return SIMDScalar<Int32,4>( vreinterpretq_s32_u32( vcgtq_f32( vf, vdupq_n_f32( value ) ) ) );
 #else
 				return SIMDScalar<Int32,4>( a > value, b > value, c > value, d > value );
 #endif
@@ -618,7 +618,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar<Int32,4>( _mm_cmple_ps( vf, scalar.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar<Int32,4>( vcleq_f32( vf, scalar.vf ) );
+				return SIMDScalar<Int32,4>( vreinterpretq_s32_u32( vcleq_f32( vf, scalar.vf ) ) );
 #else
 				return SIMDScalar<Int32,4>( a <= scalar.a, b <= scalar.b, c <= scalar.c, d <= scalar.d );
 #endif
@@ -633,7 +633,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar<Int32,4>( _mm_cmple_ps( vf, _mm_set1_ps( value ) ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar<Int32,4>( vcleq_f32( vf, vdupq_n_f32( value ) ) );
+				return SIMDScalar<Int32,4>( vreinterpretq_s32_u32( vcleq_f32( vf, vdupq_n_f32( value ) ) ) );
 #else
 				return SIMDScalar<Int32,4>( a <= value, b <= value, c <= value, d <= value );
 #endif
@@ -648,7 +648,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar<Int32,4>( _mm_cmpge_ps( vf, scalar.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar<Int32,4>( vcgeq_f32( vf, scalar.vf ) );
+				return SIMDScalar<Int32,4>( vreinterpretq_s32_u32( vcgeq_f32( vf, scalar.vf ) ) );
 #else
 				return SIMDScalar<Int32,4>( a >= scalar.a, b >= scalar.b, c >= scalar.c, d >= scalar.d );
 #endif
@@ -663,7 +663,7 @@ class OM_ALIGN(16) SIMDScalar<Float32,4>
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 				return SIMDScalar<Int32,4>( _mm_cmpge_ps( vf, _mm_set1_ps( value ) ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return SIMDScalar<Int32,4>( vcgeq_f32( vf, vdupq_n_f32( value ) ) );
+				return SIMDScalar<Int32,4>( vreinterpretq_s32_u32( vcgeq_f32( vf, vdupq_n_f32( value ) ) ) );
 #else
 				return SIMDScalar<Int32,4>( a >= value, b >= value, c >= value, d >= value );
 #endif
@@ -1097,7 +1097,7 @@ OM_FORCE_INLINE SIMDScalar<Float32,4> reciprocal( const SIMDScalar<Float32,4>& v
 	SIMDScalar<Float32,4> rcp( vrecpeq_f32(v.vf) );
 	
 	// One iteration of newton-raphson increases the precision.
-	SIMDScalar<Float32,4> rcp2( vrecpsq_f32(v.vf, rcp) );
+	SIMDScalar<Float32,4> rcp2( vrecpsq_f32(v.vf, rcp.vf) );
 	return rcp2*rcp;
 #else
 	return 1.0f / v;
@@ -1127,7 +1127,7 @@ OM_FORCE_INLINE SIMDScalar<Float32,4> sqrt( const SIMDScalar<Float32,4>& scalar 
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 	return SIMDScalar<Float32,4>( _mm_sqrt_ps( scalar.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-	return SIMDScalar<Float32,4>( vrsqrtsq_f32( scalar.vf ) );
+	return SIMDScalar<Float32,4>( vrsqrteq_f32( scalar.vf ) );
 #else
 	return SIMDScalar<Float32,4>( math::sqrt(scalar.a), math::sqrt(scalar.b), math::sqrt(scalar.c), math::sqrt(scalar.d) );
 #endif
@@ -1163,7 +1163,7 @@ OM_FORCE_INLINE SIMDScalar<Float32,4> reciprocalSqrt( const SIMDScalar<Float32,4
 	
 	// One iteration of newton-raphson increases the precision.
 	SIMDScalar<Float32,4> rcpSqrt2 = rcpSqrt*v;
-	return rcpSqrt*SIMDScalar<Float32,4>( vrsqrtsq_f32(rcpSqrt2, rcpSqrt) );
+	return rcpSqrt*SIMDScalar<Float32,4>( vrsqrtsq_f32(rcpSqrt2.vf, rcpSqrt.vf) );
 #else
 	return 1.0f / math::sqrt(v);
 #endif
@@ -1285,8 +1285,8 @@ OM_FORCE_INLINE SIMDScalar<Float32,4> interleaveLows( const SIMDScalar<Float32,4
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 	return SIMDScalar<Float32,4>( _mm_unpacklo_ps( scalar1.vf, scalar2.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-	const float32x2x2_t result = vzip_f32( vget_low_f32( scalar1.vf ), vget_low_f32( scalar2.vf ) )) );
-	return SIMDScalar<Float32,4>( vcombine_f32( result.vfal[0], result.vfal[1] ) );
+	const float32x2x2_t result = vzip_f32( vget_low_f32( scalar1.vf ), vget_low_f32( scalar2.vf ) );
+	return SIMDScalar<Float32,4>( vcombine_f32( result.val[0], result.val[1] ) );
 #else
 	return SIMDScalar<Float32,4>( scalar1.a, scalar2.a, scalar1.b, scalar2.b );
 #endif
@@ -1303,8 +1303,8 @@ OM_FORCE_INLINE SIMDScalar<Float32,4> interleaveHighs( const SIMDScalar<Float32,
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 	return SIMDScalar<Float32,4>( _mm_unpackhi_ps( scalar1.vf, scalar2.vf ) );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-	const float32x2x2_t result = vzip_f32( vget_high_f32( scalar1.vf ), vget_high_f32( scalar2.vf ) )) );
-	return SIMDScalar<Float32,4>( vcombine_f32( result.vfal[0], result.vfal[1] ) );
+	const float32x2x2_t result = vzip_f32( vget_high_f32( scalar1.vf ), vget_high_f32( scalar2.vf ) );
+	return SIMDScalar<Float32,4>( vcombine_f32( result.val[0], result.val[1] ) );
 #else
 	return SIMDScalar<Float32,4>( scalar1.c, scalar2.c, scalar1.d, scalar2.d );
 #endif
@@ -1413,7 +1413,7 @@ OM_FORCE_INLINE SIMDScalar<Float32,4> sum( const SIMDScalar<Float32,4>& v )
 	SIMDScalar<Float32,4> temp = v + math::shuffle<3,2,1,0>( v );
 	return temp + math::shuffle<2,3,0,1>( temp );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-	const float32x2_t temp = vadd_f32( vget_high_f32(v), vget_low_f32(v) );
+	const float32x2_t r = vadd_f32( vget_high_f32(v.vf), vget_low_f32(v.vf) );
 	return SIMDScalar<Float32,4>( vdupq_lane_f32( vpadd_f32( r, r ), 0 ) );
 #else
 	return SIMDScalar<Float32,4>( v.a + v.b + v.c + v.d );
@@ -1431,7 +1431,7 @@ OM_FORCE_INLINE Float32 sumScalar( const SIMDScalar<Float32,4>& v )
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE) && OM_SSE_VERSION_IS_SUPPORTED(1,0)
 	return _mm_cvtss_f32( math::sum( v ).vf );
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-	const float32x2_t temp = vadd_f32( vget_high_f32(v), vget_low_f32(v) );
+	const float32x2_t r = vadd_f32( vget_high_f32(v.vf), vget_low_f32(v.vf) );
 	return vget_lane_f32( vpadd_f32( r, r ), 0 );
 #else
 	return v.a + v.b + v.c + v.d;

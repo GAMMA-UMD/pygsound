@@ -796,11 +796,11 @@ class OM_ALIGN(16) SIMDScalar<Int16,8>
 				const SIMDFlags flags = SIMDFlags::get();
 				
 #if OM_USE_SIMD && defined(OM_SIMD_ALTIVEC)
-				return flags & SIMDFlags::ALTIVEC != 0;
+				return (flags & SIMDFlags::ALTIVEC) != 0;
 #elif OM_USE_SIMD && defined(OM_SIMD_SSE)
 				return (flags & SIMDFlags::SSE_2) != 0;
 #elif OM_USE_SIMD && defined(OM_SIMD_ARM_NEON)
-				return flags & SIMDFlags::ARM_NEON != 0;
+				return (flags & SIMDFlags::ARM_NEON) != 0;
 #else
 				return false;
 #endif

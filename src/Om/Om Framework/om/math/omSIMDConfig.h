@@ -185,7 +185,7 @@
 // Handle ARM SIMD
 #if defined(OM_CPU_ARM) && defined(__ARM_NEON__)
 	#include <arm_neon.h>
-	
+	#include "sse2neon.h"
 	// Define that ARM Neon instructions are available.
 	#define OM_SIMD_ARM_NEON 1
 #endif
